@@ -10,10 +10,6 @@ function App() {
        <h4>Hello TKS</h4>
        <h4>Hello TKS</h4>
        <h4>Hello TKS</h4>
-       <h4>Hello TKS</h4>
-       <h4>Hello TKS</h4>
-       <h4>Hello TKS</h4>
-       
        </center>
     </div>
   );
