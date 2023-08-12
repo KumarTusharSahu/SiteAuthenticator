@@ -1,6 +1,6 @@
 import React from "react";
 import '../Assets/css/style.css';
-import '../Assets/js/app.js'
+
 
 function LoginScreen() {
   return (
