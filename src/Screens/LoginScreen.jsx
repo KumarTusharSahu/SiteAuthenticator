@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import '../Assets/css/style.css';
 
 
+
+
 function LoginScreen() {
+
+    const [isSignUpMode, setIsSignUpMode] = useState(false);
+
+    const handleSignUpClick = () => {
+        setIsSignUpMode(true);
+    }
+
+    const handleSignInClick = () => {
+        setIsSignUpMode(false);
+    }
+    
   return (
  
-    <div className="container">
+    <div className={`container ${isSignUpMode ? 'sign-up-mode' : ''}`}>
       <div className="forms-container">
         <div className="signin-signup">
           <form action="#" className="sign-in-form">
@@ -76,7 +89,7 @@ function LoginScreen() {
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
               ex ratione. Aliquid!
             </p>
-            <button className="btn transparent" id="sign-up-btn">
+            <button className="btn transparent" id="sign-up-btn" onClick={handleSignUpClick} >
               Sign up
             </button>
           </div>
@@ -89,7 +102,7 @@ function LoginScreen() {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
               laboriosam ad deleniti.
             </p>
-            <button className="btn transparent" id="sign-in-btn">
+            <button className="btn transparent" id="sign-in-btn" onClick={handleSignInClick}>
               Sign in
             </button>
           </div>
@@ -99,6 +112,7 @@ function LoginScreen() {
     </div>
 
   );
-}
+        }
+
 
 export default LoginScreen;
