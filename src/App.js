@@ -8,9 +8,9 @@ import Background from './Components/Background';
 function App() {
   return (
     <div style={{height:'100%'}}> 
-     <Background
-     entered = {true}/>
+     <LoginScreen/>
     </div>
+    
   );
 }
 
