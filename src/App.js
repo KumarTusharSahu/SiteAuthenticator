@@ -1,5 +1,5 @@
 import logo from './logo.svg';
-import './styles/App.css';
+import './App.css';
 import React from 'react';
 import LoginScreen from './Screens/LoginScreen';
 import Background from './Components/Background';
@@ -10,7 +10,9 @@ function App() {
     <div style={{height:'100%'}}> 
      <Background
      entered = {true}/>
+     <LoginScreen/>
     </div>
+    
   );
 }
 
