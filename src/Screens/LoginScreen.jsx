@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import '../Assets/css/style.css';
-
-
-
+import Background from "../Components/Background"
 
 function LoginScreen() {
 
@@ -17,7 +15,10 @@ function LoginScreen() {
     }
     
   return (
- 
+    <>
+    
+      <Background/>
+  
     <div className={`container ${isSignUpMode ? 'sign-up-mode' : ''}`}>
       <div className="forms-container">
         <div className="signin-signup">
@@ -110,7 +111,7 @@ function LoginScreen() {
         </div>
       </div>
     </div>
-
+</>
   );
         }
 
