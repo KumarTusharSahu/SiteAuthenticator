@@ -3,6 +3,7 @@ import '../Assets/css/style.css';
 import axios from "axios";
 
 import Background from "../Components/Background"
+import { Link } from "react-router-dom";
 
 function LoginScreen() {
 
@@ -39,6 +40,7 @@ function LoginScreen() {
               <input type="password" placeholder="Password" name="password"/>
             </div>
             <input type="submit" defaultValue="Login" className="btn solid" />
+            <Link to="/forgetmail">Forget password?</Link>
             <p className="social-text">Or Sign in with social platforms</p>
             <div className="social-media">
               
