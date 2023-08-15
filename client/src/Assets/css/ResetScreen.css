@@ -1,136 +1,40 @@
-@import 'https://static.stayjapan.com/assets/dashboard/application-33c1a06b7784b53cd746d479718b6295c0fcefebb696e78dcee7c68efc92fada.css';
+/* @import "https://static.stayjapan.com/assets/dashboard/application-33c1a06b7784b53cd746d479718b6295c0fcefebb696e78dcee7c68efc92fada.css"; */
 
-//
-// Horizontal container
-//
+/* Horizontal container */
+
+.resetContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  top: 100px;
+  width: 70%;
+  flex-wrap: wrap;
+}
+
+.resetImage {
+  margin-left: 1vh;
+  height: 70vh;
+  width: 70vh;
+}
+
 .horizontal-container {
   margin: 0 auto;
   width: 100%;
-  
-  @media(min-width: 768px) {
+
+  @media (min-width: 768px) {
     width: 500px;
   }
- 
-  /* Create circle */
-  @mixin drawCircle {
-    background-color: white;
-    border-radius: 50%; 
-    border: 2px solid #ccc;
-    color: #ccc;
-    display: block;
-    height: 20px;
-    line-height: 18px;
-    margin: 0 auto;
-    text-align: center;
-    width: 20px;
-  }
 
-  @mixin drawLine {
-    background-color: #e5e5e5;
-    content: '';
-    height: 3px;
-    left: -50%;
-    transform: translateX(50%);
-    position: absolute;
-    top: 9px;
-    width: 100%;
-    z-index: -1;
-  }
+  /* Horizontal form */
 
-    /* Custom progress bar */
-  .progress-bar-container {
-    position: relative;
-
-    .custom-progress-bar {
-      counter-reset: step; /* Initial step: 0 */
-      padding-left: 0;
-    }
-
-    .custom-progress-bar li {
-      float: left;
-      font-size: 12px;
-      list-style: none;
-      position: relative;
-      text-align: center;
-      text-transform: uppercase;
-      width: 50%;
-
-      &:before {
-        @include drawCircle;
-        content: counter(step);
-        counter-increment: step;
-      }
-
-      &:after {
-        @include drawLine;
-      }
-
-      &:last-child {
-        &:before {
-          display: none;
-        }
-        &:after {
-          display: none;
-        }
-      }
-
-      &.active {
-        &:before {
-          border-color: red;
-          color: red;
-        }    
-      }
-
-      &.finished {
-        &:before {
-          background-color: red;
-          border-color: red;
-          color: #fff;
-          content: "\2713"
-        }
-      }
-    }
-
-    .custom-progress-line {
-      height: 3px;
-      position: absolute;
-      content: '';
-      top: 9px;
-      left: 0;
-      width: auto;
-      background-color: red;
-    }
-  }
- 
-  //
-  // Horizontal form
-  //
   .horizontal-form-box {
-    background-color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     border: 1px solid #e5e5e5;
     height: 466px;
     padding: 30px;
-    
-    .horizontal-info-container {   
-      img {
-        height: 75px;
-        margin-bottom: 20px; 
-      }
 
-      .horizontal-heading {
-        color: #000;
-        font-size: 22px; 
-        font-weight: bold; 
-        text-transform: capitalize;
-      }
-
-      .horizontal-subtitle {
-        letter-spacing: 1px;
-        margin-bottom: 20px;
-        text-align: left;
-      }
-    }
-  
     .horizontal-form {
       label,
       button {
@@ -142,5 +46,106 @@
         font-weight: normal;
       }
     }
+  }
+}
+.horizontal-heading {
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.horizontal-subtitle {
+  color: #fff;
+  letter-spacing: 1px;
+  margin-bottom: 40px;
+  text-align: left;
+  text-align: center;
+}
+
+.inputTitle {
+  color: lightgoldenrodyellow;
+}
+
+.setPass {
+  /* background-color: red; */
+  font-weight: bold;
+  padding: 10px;
+  margin-top: 2vh;
+}
+
+.textfield {
+  margin-top: 8px;
+  margin-bottom: 4vh;
+  font-size: 20px;
+}
+
+.btnr {
+  border-radius: 3px;
+  text-decoration: none;
+  position: relative;
+  padding: 16px;
+  border: 1px solid #fff;
+  z-index: 20;
+  transition: all 0.35s cubic-bezier(1, 0, 0, 1);
+}
+
+.btnr:hover {
+  color: #fff;
+}
+
+.btn-color {
+  border-color: #f93195;
+  color: #f93195;
+
+  &::before,
+  &::after {
+    background: #f93195;
+  }
+}
+
+.btnr::before,
+.btnr::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  transition: all 0.35s cubic-bezier(1, 0, 0, 1);
+}
+
+.btn-l-r::after {
+  height: 100%;
+  width: 0;
+  top: 0;
+}
+
+.btn-l-r:hover::after {
+  width: 100%;
+}
+.btn-l-r::after {
+  left: 0;
+}
+
+@media (max-width: 415px) {
+  .resetContainer {
+    top: -30px;
+    left: 10px;
+  }
+
+  .resetImage {
+    height: 40vh;
+    width: 40vh;
+  }
+}
+
+@media (max-width: 1025px), (max-height: 600px) {
+  .resetContainer {
+    top: -30px;
+    left: 10px;
+  }
+
+  .resetImage {
+    height: 40vh;
+    width: 40vh;
   }
 }
