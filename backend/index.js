@@ -4,6 +4,7 @@ const app = express();
 const port = 8000;
 const expressLayouts = require('express-ejs-layouts');
 const db = require('./config/mongoose');
+const cors =require('cors');
 // used for session cookie
 const session = require('express-session');
 const passport = require('passport');
@@ -25,6 +26,7 @@ console.log('chat server is listening on port 5000');
 
 
 
+app.use(cors());
 app.use(express.urlencoded());
 
 app.use(cookieParser());
@@ -47,7 +49,7 @@ app.set('views', './views');
 
 // mongo store is used to store the session cookie in the db
 app.use(session({
-    name: 'codeial',
+    name: 'siteAuthenticator',
     // TODO change the secret before deployment in production mode
     secret: 'blahsomething',
     saveUninitialized: false,

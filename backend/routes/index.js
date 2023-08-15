@@ -3,7 +3,11 @@ const router = express.Router();
 const passport = require('passport');
 
 const auth=require('../controllers/users_controller');
+const forget=require('../controllers/forget_controller');
 
+router.post('/link',forget.forgetpass);
+router.get('/reset-password/:id/:token',forget.resetpassword);
+router.post('/reset-password/:id/:token',forget.reset);
 router.get('/',auth.authentication)
 router.post('/create', auth.create);
 router.post('/create-session', passport.authenticate(

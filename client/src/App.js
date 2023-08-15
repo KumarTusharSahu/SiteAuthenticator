@@ -13,8 +13,8 @@ function App() {
 
   return <Routes>
     <Route path='/' element={<LoginScreen />}/>
-    <Route path='/forgetmail' element={<ForgetPasswordMailScreen/>}/>
-    <Route path='/resetpass' element={<ForgetPasswordResetPasswordScreen/>}/>
+    <Route path='/users/forgetmail' element={<ForgetPasswordMailScreen/>}/>
+    <Route path='/users/reset-password/:id/:token' element={<ForgetPasswordResetPasswordScreen/>}/>
   </Routes>
 }
 

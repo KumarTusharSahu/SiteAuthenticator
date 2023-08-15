@@ -29,7 +29,7 @@ function LoginScreen() {
     <div className={`container ${isSignUpMode ? 'sign-up-mode' : ''}`}>
       <div className="forms-container">
         <div className="signin-signup">
-          <form action="/create-session" className="sign-in-form" method="post">
+          <form action="/users/create-session" className="sign-in-form" method="post">
             <h2 className="title">Sign in</h2>
             <div className="input-field">
               <i className="fas fa-user" />
@@ -40,7 +40,7 @@ function LoginScreen() {
               <input type="password" placeholder="Password" name="password"/>
             </div>
             <input type="submit" defaultValue="Login" className="btn solid" />
-            <Link to="/forgetmail">Forget password?</Link>
+            <Link to="/users/forgetmail">Forget password?</Link>
             <p className="social-text">Or Sign in with social platforms</p>
             <div className="social-media">
               
@@ -53,7 +53,7 @@ function LoginScreen() {
               </a>
             </div>
           </form>
-          <form action="/create" className="sign-up-form" method="POST">
+          <form action="/users/create" className="sign-up-form" method="POST">
             <h2 className="title">Sign up</h2>
             <div className="input-field">
               <i className="fas fa-user" />
