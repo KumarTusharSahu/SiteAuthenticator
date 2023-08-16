@@ -3,7 +3,6 @@ import reset from "../Assets/images/reset.png"
 import 'animate.css';
 import { Link } from "react-router-dom";
 
-
 function ForgetPasswordResetPasswordScreen() {
   return (
     <div className="resetContainer">
