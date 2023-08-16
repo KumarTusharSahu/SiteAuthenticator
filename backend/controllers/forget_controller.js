@@ -99,7 +99,7 @@ module.exports.reset=async function(req,res){
       console.log(user);
       user.save();
       req.flash('success', 'password reset');
-      res.render('/');
+      return res.redirect("http://localhost:3000/");
      }catch(error){
         console.log(error.message);
         res.send(error.message);

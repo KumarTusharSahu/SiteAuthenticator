@@ -16,10 +16,7 @@ function LoginScreen() {
   const handleSignInClick = () => {
     setIsSignUpMode(false);
   }
-  const handleSigiIn = async () => {
-    const response = await axios.get('http://localhost:8000/');
-    console(response.data)
-  }
+
 
   return (
     <>
