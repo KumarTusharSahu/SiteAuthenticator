@@ -21,8 +21,8 @@ function ForgetPasswordMailScreen(){
           </form>
         </div>
         <div className="footer">
-          <h5>New here?  <Link to="/" className="forgetPass">  Sign Up</Link></h5>
-          <h5>Already have an account? <Link to="/" className="forgetPass"> Sign In</Link></h5>
+          <h5>New here?  <Link to="/login" className="forgetPass">  Sign Up</Link></h5>
+          <h5>Already have an account? <Link to="/login" className="forgetPass"> Sign In</Link></h5>
         </div>
       </div>
       </div>

@@ -42,7 +42,7 @@ function ForgetPasswordResetPasswordScreen() {
                   Set new password
                 </button>
               </form>
-              <Link to="/" className="forgetPass">Sign In</Link>
+              <Link to="/login" className="forgetPass">Sign In</Link>
 
             </div>
           </div>
