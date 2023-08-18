@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-import NavBar from '../Components/NavBar';
+import Footer from '../Components/Footer';
 
 const HomeScreen = () => {
   return (
     <>
-    <NavBar/>
+      <Footer />
       <h1 style={{ color: "white" }}>Welcome to home screen</h1>
       <Link to="/login" className="forgetPass"> Sign In</Link>
     </>

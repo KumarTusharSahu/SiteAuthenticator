@@ -26,11 +26,11 @@ function LoginScreen() {
       <div className={`container ${isSignUpMode ? 'sign-up-mode' : ''}`}>
         <div className="forms-container">
           <div className="signin-signup">
-          <form action="/users/create-session" className="sign-in-form" method="post">
+            <form action="/users/create-session" className="sign-in-form" method="post">
               <h2 className="title">Sign in</h2>
               <div className="input-field">
-                <i className="fas fa-user" />
-                <input type="email" placeholder="Username" name="email" />
+                <i className="fas fa-envelope" />
+                <input type="email" placeholder="Email" name="email" />
               </div>
               <div className="input-field">
                 <i className="fas fa-lock" />

@@ -13,7 +13,6 @@ function ForgetPasswordResetPasswordScreen() {
 
             <div className="horizontal-form-box">
               <div className="horizontal-info-container text-center">
-                {/* <img src="https://static.stayjapan.com/assets/top/icon/values-7dd5c8966d7a6bf57dc4bcd11b2156e82a4fd0da94a26aecb560b6949efad2be.svg" /> */}
                 <p className="horizontal-heading">Reset your password</p>
                 <p className="horizontal-subtitle">
                   Your password needs to be at least 8 characters.
@@ -26,7 +25,7 @@ function ForgetPasswordResetPasswordScreen() {
                     type="password"
                     className="o3-form-control o3-input-lg textfield"
                     id="new_password"
-                name='password'
+                    name='password'
                   />
                 </div>
                 <div className="o3-form-group">
@@ -35,7 +34,7 @@ function ForgetPasswordResetPasswordScreen() {
                     type="password"
                     className="o3-form-control o3-input-lg textfield"
                     id="confirm_password"
-                name='password2'
+                    name='password2'
                   />
                 </div>
                 <button className="o3-btn o3-btn-primary o3-btn-block setPass btnr btn-color btn-l-r">
@@ -50,7 +49,7 @@ function ForgetPasswordResetPasswordScreen() {
       </div>
     </div>
 
-    )
+  )
 }
 
 export default ForgetPasswordResetPasswordScreen;
