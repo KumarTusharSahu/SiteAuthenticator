@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 const WelcomeScreen = () => {
   return (
     <>
+    
     <div className="welcome">
       <div className="background1">
       <img src={background1} alt="" className="back" />  

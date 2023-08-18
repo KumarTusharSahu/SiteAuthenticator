@@ -1,12 +1,11 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
+import LoginScreen from './Screens/LoginScreen';
 
 import { Route, Routes } from 'react-router-dom';
-
-import WelcomeScreen from './Screens/WelcomeScreen';
-import LoginScreen from './Screens/LoginScreen';
 import ForgetPasswordMailScreen from './Screens/ForgetPasswordMailScreen';
 import ForgetPasswordResetPasswordScreen from './Screens/ForgetPasswordResetPasswordScreen';
+import WelcomeScreen from './Screens/WelcomeScreen';
 
 
 
