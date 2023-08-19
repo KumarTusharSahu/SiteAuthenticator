@@ -11,11 +11,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  /* background: url("../images/milky-way-2695569_1280.jpg"); */
+  background: url("../images/milky-way-2695569_1280.jpg");
   background-repeat: repeat;
   background-size: cover;
   background-color: #151515;
 }
+
 
 .forgetContainer {
   display: flex;

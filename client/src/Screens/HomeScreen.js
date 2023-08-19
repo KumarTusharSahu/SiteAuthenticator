@@ -8,6 +8,7 @@ import "../Assets/css/HomeScreen.css"
 const HomeScreen = () => {
   return (
     <>
+    <div className="home">
       <NavBar />
       <div className='HomeScreenContent'
       >
@@ -32,7 +33,7 @@ const HomeScreen = () => {
       </div>
       <Footer />
 
-
+</div>
     </>
   )
 }

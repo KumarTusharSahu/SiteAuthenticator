@@ -8,6 +8,7 @@ import 'animate.css';
 function ForgetPasswordMailScreen() {
   return (
     <>
+    <div className="backContainer"></div>
       <div className="forgetContainer">
         <img src={forget} alt="vf" className="forgotImg animate__animated animate__slideInLeft" />
         <div className="row animate__animated animate__slideInRight">
