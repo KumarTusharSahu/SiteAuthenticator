@@ -1,9 +1,7 @@
 import React from 'react'
 import logo from "../Assets/images/logo.png"
 
-
 import "../Assets/css/Footer.css"
-import NavBar from './NavBar';
 
 const Footer = () => {
 
@@ -11,17 +9,7 @@ const Footer = () => {
 
     return (
         <>
-            <div className="footermain">
-                <NavBar />
-                <div className="footercontent">
-                    <h1 className="anim">Stock Photos</h1>
-                    <p className="anim">Beautiful, free images and photos that you can download and use for any project. <br /> than any royalty free or stock photos.</p>
-                    <div className="links anim">
-                        <button><span></span>Free Images</button>
-                        <button><span></span>Image API</button>
-                    </div>
-                </div>
-            </div>
+
             <footer>
                 <div className="footerrow">
                     <div className="footercol">
