@@ -4,13 +4,25 @@
   color: white;
 }
 
-.navbar{
-  background-color: 	#b59639;
+.navbar-brand:hover {
+  color: cyan;
+}
+
+.navbar-toggler{
+ background-color: #fff;
 }
 
 .nav-item {
   color: white;
   font-size: 3vh;
+}
+
+.nav-item:hover {
+  color: white;
+}
+
+.nav-item:focus {
+  color: cyan;
 }
 
 .move {
