@@ -11,36 +11,36 @@ const Footer = () => {
 
     return (
         <>
-            <div class="footermain">
+            <div className="footermain">
                 <NavBar />
-                <div class="footercontent">
-                    <h1 class="anim">Stock Photos</h1>
-                    <p class="anim">Beautiful, free images and photos that you can download and use for any project. <br /> than any royalty free or stock photos.</p>
-                    <div class="links anim">
+                <div className="footercontent">
+                    <h1 className="anim">Stock Photos</h1>
+                    <p className="anim">Beautiful, free images and photos that you can download and use for any project. <br /> than any royalty free or stock photos.</p>
+                    <div className="links anim">
                         <button><span></span>Free Images</button>
                         <button><span></span>Image API</button>
                     </div>
                 </div>
             </div>
             <footer>
-                <div class="footerrow">
-                    <div class="footercol">
-                        <img src={logo} class="footer_logo" />
-                        <p class="footer_about">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore harum molestias nesciunt,
+                <div className="footerrow">
+                    <div className="footercol">
+                        <img src={logo} className="footer_logo" />
+                        <p className="footer_about">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore harum molestias nesciunt,
                             doloremque magni aspernatur iste blanditiis, fugiat quaerat accusamus ut, vero tempore.
                             Fugiat, illum!
                         </p>
                     </div>
-                    <div class="footercol">
-                        <h5>Office <div class="bottom_line"><span></span></div></h5>
+                    <div className="footercol">
+                        <h5>Office <div className="bottom_line"><span></span></div></h5>
                         <p>2841 Romines Mill Road</p>
                         <p>Plano</p>
                         <p>Texas, ZIP 75074, United States</p>
-                        <p class="footer_email">alexastockphotos@gamil.com</p>
+                        <p className="footer_email">alexastockphotos@gamil.com</p>
                         <h6>+1 - 2145958195</h6>
                     </div>
-                    <div class="footercol">
-                        <h5>Links <div class="bottom_line"><span></span></div></h5>
+                    <div className="footercol">
+                        <h5>Links <div className="bottom_line"><span></span></div></h5>
                         <ul>
                             <li><a href="">HOME</a></li>
                             <li><a href="">ABOUT</a></li>
@@ -48,23 +48,23 @@ const Footer = () => {
                             <li><a href="">CONTACT US</a></li>
                         </ul>
                     </div>
-                    <div class="footercol">
-                        <h5>Newsletter <div class="bottom_line"><span></span></div></h5>
+                    <div className="footercol">
+                        <h5>Newsletter <div className="bottom_line"><span></span></div></h5>
                         <form>
-                            <i class="fa-regular fa-envelope"></i>
+                            <i className="fa-regular fa-envelope"></i>
                             <input type="email" placeholder="Enter your email" required />
-                            <button type="submit"><i class="fa-solid fa-arrow-right" style={{ color: "#ffffff" }}></i></button>
+                            <button type="submit"><i className="fa-solid fa-arrow-right" style={{ color: "#ffffff" }}></i></button>
                         </form>
-                        <div class="social_icons">
-                            <i class="fa-brands fa-square-facebook social_icon" style={{ color: "#ffffff" }}></i>
-                            <i class="fa-brands fa-whatsapp social_icon" style={{ color: "#ffffff" }}></i>
-                            <i class="fa-brands fa-twitter social_icon" style={{ color: "#ffffff" }}></i>
-                            <i class="fa-brands fa-instagram social_icon" style={{ color: "#ffffff" }}></i>
+                        <div className="social_icons">
+                            <i className="fa-brands fa-square-facebook social_icon" style={{ color: "#ffffff" }}></i>
+                            <i className="fa-brands fa-whatsapp social_icon" style={{ color: "#ffffff" }}></i>
+                            <i className="fa-brands fa-twitter social_icon" style={{ color: "#ffffff" }}></i>
+                            <i className="fa-brands fa-instagram social_icon" style={{ color: "#ffffff" }}></i>
                         </div>
                     </div>
                 </div>
                 <hr />
-                <p class="copyright">Cosas Learning Ⓒ {year} - All Rights Reserved</p>
+                <p className="copyright">Cosas Learning Ⓒ {year} - All Rights Reserved</p>
             </footer>
         </>
     )
