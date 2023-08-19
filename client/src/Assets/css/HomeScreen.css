@@ -1,5 +1,6 @@
 .HomeScreenContent {
   height: 100vh;
+  padding-top: 10vh;
 }
 
 .home{
@@ -107,4 +108,50 @@ p.anim {
 }
 .homecontent button:hover {
   border: 0;
+}
+
+
+
+/* Grid */
+
+.gridHeading{
+  text-align: center;
+  color: #fff;
+}
+
+.gridContainer{
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  /* background-color: #f66335; */
+  row-gap: 2rem;
+  column-gap: 2rem;
+  margin:8vh;
+}
+
+.gridContainer div{
+  display: flex;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  padding: 2vh;
+  border-radius: 16px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gridContainer div h1{
+  color: #fff;
+  font-weight: bold;
+}
+
+.gridContainer div p{
+  color: lightgoldenrodyellow;
+}
+
+@media (max-width:415px){
+  .gridContainer{
+    grid-template-columns: repeat(1, auto);
+  margin:2vh;
+  row-gap: 1rem;
+  }
 }
