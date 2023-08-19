@@ -17,7 +17,7 @@ router.post('/create-session', passport.authenticate(
 router.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
 router.get('/auth/google/callback', passport.authenticate('google', {failureRedirect: '/'}), auth.createSession);
 router.get('/auth/github', passport.authenticate('github',{ scope: [ 'profile','email' ] }));
- 
+ router.use('/',require('./home'));
 // GitHub will call this URL
 router.get('/auth/github/callback',
   passport.authenticate('github', { failureRedirect: '/user' }),auth.createSession)

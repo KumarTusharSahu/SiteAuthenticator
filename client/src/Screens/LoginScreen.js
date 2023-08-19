@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import '../Assets/css/style.css';
-import axios from "axios";
 
 import Background from "../Components/Background"
 import { Link } from "react-router-dom";

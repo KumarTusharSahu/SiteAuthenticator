@@ -18,7 +18,9 @@ module.exports.create = async function (req, res) {
         name: req.body.name,
         email: req.body.email,
         password: req.body.password,
+       
       },
+
       function (err, user) {
         if (err) {
           console.log("error in creating account", err);
@@ -35,11 +37,11 @@ module.exports.create = async function (req, res) {
 };
 
 module.exports.createSession = function (req, res) {
-  return res.redirect("http://localhost:3000/");
+  return res.redirect("/home");
 };
 
 module.exports.destroySession = function (req, res) {
   req.logout();
 
-  return res.redirect("/user");
+  return res.redirect("/");
 };

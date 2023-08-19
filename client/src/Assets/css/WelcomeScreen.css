@@ -1,50 +1,84 @@
-.back{
-    height: 100vh;
-    width: 100%;
-  }
-  .welcome div{
-    width: 100%;
-    height: 100vh;
-    position: absolute;
-    
-  }
-  
-  
-  .background1{
-   z-index: 1;
-  }
-  .background2{
-    z-index: 2;
-  }
-  .background3{
-    z-index: 3;
-  }
-  .background4{
-    z-index: 4;
-    text-align: right;
-  }
-  .background5{
-    text-align: right;
-    z-index: 5;
-  }
-  
-  .mountain{
-    height: 100vh;
-  }
-  
-  .horse{
-    height:40vh;
-    width: 50vh;
-    position: relative;
+.back {
+  height: 100vh;
+  width: 100%;
+}
+.welcome div {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+}
+
+.background1 {
+  z-index: 1;
+}
+.background2 {
+  z-index: 2;
+}
+.background3 {
+  z-index: 3;
+}
+.background4 {
+  z-index: 4;
+  text-align: right;
+}
+.background5 {
+  text-align: right;
+  z-index: 5;
+}
+
+.mountain {
+  height: 100vh;
+}
+
+.horse {
+  height: 40vh;
+  width: 50vh;
+  /* position: relative;
     top: 120px;
-    right: 140px;
-    
-  }
+    right: 140px; */
+  margin-top: 14vh;
+  margin-right: 22vh;
+}
 
-  .content{
-    color:white;
-  }
+.content {
+  color: white;
+}
 
-  .welcomebox {
-    z-index: 6;
-  }
+.welcomebox {
+  display: flex;
+  margin-left: 12em;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 6;
+  color: white;
+  font-family: "Roboto", sans-serif;
+}
+
+.mainHeading {
+  font-size: 8vh;
+  font-weight: bold;
+  line-height: 84px;
+  margin-bottom: 16px;
+  text-shadow: 3px 3px grey;
+}
+
+.subHeading {
+  font-size: 6vh;
+  font-weight: 900px;
+  line-height: 56px;
+}
+
+.welcomeContainer {
+  height: 100vh;
+}
+.content1 {
+  height: 100vh;
+  background-color: black;
+}
+
+.borderContainer {
+  z-index: 6;
+  position: relative;
+  top: -50px;
+  margin-left: 10%;
+}
