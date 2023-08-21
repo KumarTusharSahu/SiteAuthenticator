@@ -24,7 +24,7 @@ const Footer = () => {
                         <p>2841 Romines Mill Road</p>
                         <p>Plano</p>
                         <p>Texas, ZIP 75074, United States</p>
-                        <p className="footer_email">alexastockphotos@gamil.com</p>
+                        <p className="footer_email">siteauthenticator@gmail.com</p>
                         <h6>+1 - 2145958195</h6>
                     </div>
                     <div className="footercol">
@@ -52,7 +52,7 @@ const Footer = () => {
                     </div>
                 </div>
                 <hr />
-                <p className="copyright">Cosas Learning Ⓒ {year} - All Rights Reserved</p>
+                <p className="copyright">SiteAuthentiator Ⓒ {year} - All Rights Reserved</p>
             </footer>
         </>
     )
