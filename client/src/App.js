@@ -11,13 +11,14 @@ import WelcomeScreen from './Screens/WelcomeScreen';
 
 
 
+
 function App() {
 
 
   return <Routes>
     <Route path='/' element={<WelcomeScreen />}/>
-    <Route path='users/home' element={<HomeScreen />}/>
-    <Route path='/login' element={<LoginScreen />}/>
+    <Route path='/users/home' element={<HomeScreen />}/>
+    <Route path='/users/login' element={<LoginScreen />}/>
     <Route path='/users/forgetmail' element={<ForgetPasswordMailScreen/>}/>
     <Route path='/users/reset-password/:id/:token' element={<ForgetPasswordResetPasswordScreen/>}/>
   </Routes>

@@ -1,13 +1,17 @@
 const User = require("../models/user");
 
+
+
+
+module.exports.login=function (req,res){
+
+}
 module.exports.authentication = function (req, res) {
   if (req.isAuthenticated()) {
-    return res.redirect("home");
+    return res.redirect("http://localhost:3000/users/home");
   }
-
-  return res.render("authentication", {
-    title: "fluneteng",
-  });
+console.log("hello")
+  return res.redirect("http://localhost:3000/users/login");
 };
 
 module.exports.create = async function (req, res) {
@@ -26,22 +30,23 @@ module.exports.create = async function (req, res) {
           console.log("error in creating account", err);
           return;
         }
-        return res.redirect("/");
+        return res.redirect("http://localhost:3000/users/login");
       }
     );
   } else {
     console.log("you have signed up");
 
-    return res.redirect("http://localhost:3000/");
+    return res.redirect("http://localhost:3000/users/login");
   }
 };
 
-module.exports.createSession = function (req, res) {
-  return res.redirect("/home");
+module.exports.createSession =  function (req, res) {
+  
+  return res.redirect("/users/home");
 };
 
 module.exports.destroySession = function (req, res) {
   req.logout();
-
-  return res.redirect("/");
+  res.send("success")
+  
 };

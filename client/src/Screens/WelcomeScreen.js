@@ -11,8 +11,6 @@ import slideBorder from "../Assets/images/slideBorder.svg";
 
 import Carousel from '../Components/Carousel';
 
-
-
 const WelcomeScreen = () => {
   return (
     <>
@@ -54,12 +52,10 @@ const WelcomeScreen = () => {
       <div className="content1">
         <div className="borderContainer">
           <img src={slideBorder} alt="slideBorder" className='slideBorder' />
-          <Carousel/>
+          <Carousel />
         </div>
-
-
-
       </div>
+
     </>
   )
 }

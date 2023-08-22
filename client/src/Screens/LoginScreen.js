@@ -1,10 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import '../Assets/css/style.css';
 
 import Background from "../Components/Background"
 import { Link } from "react-router-dom";
+import axios from "axios";
+
+
+
 
 function LoginScreen() {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  useEffect(()=>{
+      
+  },[])
+
+  /*const login = ()=>{
+    axios.post("http://localhost:8000/users/create-session",{
+        email:email,
+        password:password
+  },{
+    withCredentials:true
+  }).then((res)=>{
+     if(res.data === "success"){
+      window.location.href = "/users/home"
+     }
+  });
+  }*/
 
   const [isSignUpMode, setIsSignUpMode] = useState(false);
 
@@ -25,17 +47,17 @@ function LoginScreen() {
       <div className={`container ${isSignUpMode ? 'sign-up-mode' : ''}`}>
         <div className="forms-container">
           <div className="signin-signup">
-          <form action="/users/create-session" className="sign-in-form" method="post">
+            <form  className="sign-in-form" method="post" action="/users/create-session">
               <h2 className="title">Sign in</h2>
               <div className="input-field">
-                <i className="fas fa-user" />
-                <input type="email" placeholder="Username" name="email" />
+                <i className="fas fa-envelope" />
+                <input type="email" placeholder="Email" name="email" onChange={e => setEmail(e.target.value)} />
               </div>
               <div className="input-field">
                 <i className="fas fa-lock" />
-                <input type="password" placeholder="Password" name="password" />
+                <input type="password" placeholder="Password" name="password"onChange={e => setPassword(e.target.value)} />
               </div>
-              <input type="submit" defaultValue="Login" className="btn solid" />
+              <input type="submit" defaultValue="Login" className="btn1 solid" />
               <Link to="/users/forgetmail" className="forgetPass">Forgot password?</Link>
               <p className="social-text">Or Sign in with social platforms</p>
               <div className="social-media">
@@ -63,15 +85,15 @@ function LoginScreen() {
                 <i className="fas fa-lock" />
                 <input type="password" placeholder="Password" name="password" />
               </div>
-              <input type="submit" className="btn" defaultValue="Sign up" />
+              <input type="submit" className="btn1" defaultValue="Sign up" />
               <p className="social-text">Or Sign up with social platforms</p>
               <div className="social-media">
 
 
-                <a href="http://localhost:8000/users/auth/google" className="social-icon">
+                <a href="/users/auth/google" className="social-icon">
                   <i className="fab fa-google" />
                 </a>
-                <a href="http://localhost:8000/users/auth/github" className="social-icon">
+                <a href="/users/auth/github" className="social-icon">
                   <i className="fab fa-github" />
                 </a>
               </div>
@@ -86,7 +108,7 @@ function LoginScreen() {
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
                 ex ratione. Aliquid!
               </p>
-              <button className="btn transparent" id="sign-up-btn" onClick={handleSignUpClick} >
+              <button className="btn1 transparent" id="sign-up-btn" onClick={handleSignUpClick} >
                 Sign up
               </button>
             </div>
@@ -99,7 +121,7 @@ function LoginScreen() {
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
                 laboriosam ad deleniti.
               </p>
-              <button className="btn transparent" id="sign-in-btn" onClick={handleSignInClick}>
+              <button className="btn1 transparent" id="sign-in-btn" onClick={handleSignInClick}>
                 Sign in
               </button>
             </div>
