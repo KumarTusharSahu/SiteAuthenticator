@@ -4,8 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import { Link } from "react-router-dom";
 
-function NavBar() {
-
+function NavBar({user}) {
+ console.log(user);
   const logout=()=>{
     axios.get("http://localhost:8000/users/sign-out",{
       withCredentials:true,
@@ -29,7 +29,7 @@ function NavBar() {
           <a className="nav-item nav-link move" href="#" style={{color:"white"}}>Manual</a>
           <a className="nav-item nav-link move" href="#"style={{color:"white"}}>About</a>
           <a className="nav-item nav-link move" href="#" style={{color:"white"}}>Contact Us</a>
-          <Link onClick={logout}>LogOut</Link>
+          {user.userid?<Link onClick={logout}>LogOut</Link>:<Link to="/users/login">Login</Link>}
         </div>
       </div>
     </nav>

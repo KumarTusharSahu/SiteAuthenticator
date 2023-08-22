@@ -1,27 +1,33 @@
-import './App.css';
-import React, { useState, useEffect } from 'react';
-import LoginScreen from './Screens/LoginScreen';
+import "./App.css";
 
-import { Route, Routes } from 'react-router-dom';
+import LoginScreen from "./Screens/LoginScreen";
 
-import HomeScreen from './Screens/HomeScreen';
-import ForgetPasswordMailScreen from './Screens/ForgetPasswordMailScreen';
-import ForgetPasswordResetPasswordScreen from './Screens/ForgetPasswordResetPasswordScreen';
-import WelcomeScreen from './Screens/WelcomeScreen';
+import { Route, Routes } from "react-router-dom";
 
-
+import HomeScreen from "./Screens/HomeScreen";
+import ForgetPasswordMailScreen from "./Screens/ForgetPasswordMailScreen";
+import ForgetPasswordResetPasswordScreen from "./Screens/ForgetPasswordResetPasswordScreen";
+import WelcomeScreen from "./Screens/WelcomeScreen";
 
 
 function App() {
+ 
+ 
 
-
-  return <Routes>
-    <Route path='/' element={<WelcomeScreen />}/>
-    <Route path='/users/home' element={<HomeScreen />}/>
-    <Route path='/users/login' element={<LoginScreen />}/>
-    <Route path='/users/forgetmail' element={<ForgetPasswordMailScreen/>}/>
-    <Route path='/users/reset-password/:id/:token' element={<ForgetPasswordResetPasswordScreen/>}/>
-  </Routes>
+  return (
+    <Routes>
+         <Route path="/" element={<WelcomeScreen />} />
+      <Route path="/users/login" element={<LoginScreen />} />
+      <Route path="/users/forgetmail" element={<ForgetPasswordMailScreen />} />
+      <Route
+        path="/users/reset-password/:id/:token"
+        element={<ForgetPasswordResetPasswordScreen />}
+      />
+    
+        <Route path="/users/home" element={<HomeScreen />} />
+      
+    </Routes>
+  );
 }
 
 export default App;

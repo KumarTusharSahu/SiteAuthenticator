@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Link } from "react-router-dom";
 import Footer from '../Components/Footer';
 import NavBar from '../Components/NavBar';
@@ -21,25 +21,39 @@ import AnimButton from '../Components/AnimButton';
 
 
 const HomeScreen = () => {
-  const[userData,setUserData]=useState();
- /* useEffect(()=>{
-    axios.get("http://localhost:8000/users/home",{
-      withCredentials:true
-    }).then((res)=>{
-      console.log(res.data);
-    })
-},[])*/
+  const[userData,setUserData]=useState('');
+  const [user,setUser]=useState('');
 
+  useEffect(()=>{
+    const home = () =>{
+      axios.get("http://localhost:8000/users/home",{
+        withCredentials:true
+      }).then((res)=>{
+        setUserData(res.data.name)
+        setUser({
+          userid:res.data._id,
+          username:res.data.name
+        });
+      },)}
+
+      home();
+  },[])
+
+  console.log(userData)
+  
+
+    
   return (
     <>
-      <NavBar />
+      <NavBar user={user}/>
+      
       <div className="home">
-
+         
         <div className='HomeScreenContent'>
           <div className='carouselBanner'>
             <img src={homeCarousel} alt="" />
             <div className="homeCarousel">
-              <h1>Be productive at work</h1>
+              <h1>{userData}</h1>
               <h5 className='anim'>Find out how SiteAuthenticator has helped professionals around the world increase their productivity and improve their focus while at work.</h5>
               <div id="carouselExampleSlidesOnly" class="carousel slide carouselStyle anim" data-bs-ride="carousel">
                 <div class="carousel-indicators indicator-color">
@@ -70,6 +84,7 @@ const HomeScreen = () => {
           <div className='homeBtnContainer'>
             <AnimButton>Generate Token</AnimButton>
             <AnimButton><Link to="/login" className='homeSinBtn'> Sign In</Link></AnimButton>
+          
           </div>
 
 

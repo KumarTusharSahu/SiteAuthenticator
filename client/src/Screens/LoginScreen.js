@@ -9,12 +9,34 @@ import axios from "axios";
 
 
 function LoginScreen() {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [user, setUser] = useState("")
+
   useEffect(()=>{
-      
+    const login=()=>{
+
+      axios.get("http://localhost:8000/users/login",{
+       withCredentials:true
+      }).then((res)=>{
+       if(res.data === "home")
+       {
+        setUser("home")
+       }
+       else{
+        setUser("login")
+       }
+      })
+    }
+    login();
   },[])
 
+  if(user === "home"){
+    window.location.href="/users/home"
+  }
+ 
+
+
+ 
+ 
   /*const login = ()=>{
     axios.post("http://localhost:8000/users/create-session",{
         email:email,
@@ -51,11 +73,11 @@ function LoginScreen() {
               <h2 className="title">Sign in</h2>
               <div className="input-field">
                 <i className="fas fa-envelope" />
-                <input type="email" placeholder="Email" name="email" onChange={e => setEmail(e.target.value)} />
+                <input type="email" placeholder="Email" name="email" />
               </div>
               <div className="input-field">
                 <i className="fas fa-lock" />
-                <input type="password" placeholder="Password" name="password"onChange={e => setPassword(e.target.value)} />
+                <input type="password" placeholder="Password" name="password" />
               </div>
               <input type="submit" defaultValue="Login" className="btn1 solid" />
               <Link to="/users/forgetmail" className="forgetPass">Forgot password?</Link>
