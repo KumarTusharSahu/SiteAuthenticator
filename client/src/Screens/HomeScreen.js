@@ -1,14 +1,14 @@
-import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
 import Footer from '../Components/Footer';
 import NavBar from '../Components/NavBar';
 
-import "../Assets/css/HomeScreen.css"
 import axios from 'axios';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+
+import "../Assets/css/HomeScreen.css"
 
 import homeCarousel from "../Assets/images/homeCarousel.avif"
 import homeIntro from "../Assets/images/homeIntro.avif"
@@ -19,31 +19,30 @@ import passwordprotection from "../Assets/images/grid/passwordprotection.svg"
 import schedule from "../Assets/images/grid/schedule.svg"
 import AnimButton from '../Components/AnimButton';
 
-
+import { useNavigate } from 'react-router-dom';
 
 const HomeScreen = () => {
+  const [userData, setUserData] = useState();
+  /* useEffect(()=>{
+     axios.get("http://localhost:8000/users/home",{
+       withCredentials:true
+     }).then((res)=>{
+       console.log(res.data);
+     })
+ },[])*/
 
   const navigate = useNavigate();
-
   const navigateToSignIn = () => {
-    navigate("/login")
+    navigate("/users/login");
   }
 
-  const navigateToGenerateToken = () => {
-    navigate("/token")
+  const navigateToTokenScreen = () => {
+    navigate("/users/token");
   }
-  const[userData,setUserData]=useState();
- /* useEffect(()=>{
-    axios.get("http://localhost:8000/users/home",{
-      withCredentials:true
-    }).then((res)=>{
-      console.log(res.data);
-    })
-},[])*/
+
 
   return (
     <>
-      <NavBar />
       <div className="home">
 
         <div className='HomeScreenContent'>
@@ -79,8 +78,8 @@ const HomeScreen = () => {
             </div>
           </div>
           <div className='homeBtnContainer'>
-            <AnimButton onClick={navigateToGenerateToken}>Generate Token</AnimButton>
-            <AnimButton onClick={navigateToSignIn}> Sign In</AnimButton>
+            <AnimButton onClick={navigateToTokenScreen}>Generate Token</AnimButton>
+            <AnimButton onClick={navigateToSignIn}>Sign In</AnimButton>
           </div>
 
 

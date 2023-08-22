@@ -2,11 +2,11 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const ErrorScreen = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const home = () => {
-        navigate("/home")
-    }
+  const home = () => {
+    navigate("/users/home")
+  }
   return (
     <>
       <h1>Oops!</h1>

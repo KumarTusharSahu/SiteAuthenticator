@@ -5,11 +5,11 @@
 }
 
 .navbar-brand:hover {
-  color: cyan;
+  color: cyan !important;
 }
 
-.navbar-toggler{
- background-color: #fff;
+.navbar-toggler {
+  background-color: #fff;
 }
 
 .nav-item {
@@ -22,7 +22,7 @@
 }
 
 .nav-item:focus {
-  color: cyan;
+  color: cyan !important;
 }
 
 .move {
@@ -47,23 +47,19 @@
 }
 
 @media (max-width: 415px) {
-  .navbar-brand{
+  .navbar-brand {
     font-size: 18px;
   }
 
-  .fa-2x {
-    font-size: 20px;
-}
-.navbar-toggler{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 30px;
-}
+  .fa-circle-user {
+    font-size: 18px;
+  }
 
-.navbar-toggler-icon{
-  width: 20px;
-  height: 20px;
-}
+  .navbar-toggler {
+    display: flex;
+    height: 30px;
+    width: 40px;
+    justify-content: center;
+    align-items: center;
+  }
 }

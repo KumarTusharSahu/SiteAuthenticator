@@ -2,14 +2,6 @@
 
 /* Horizontal container */
 
-.resetBackground{
-  height: 100vh;
-  width: 100%;
-  background-image: url(../images/milky-way-2695569_1280.jpg);
-  background-repeat: repeat;
-  background-size: cover;
-}
-
 .resetContainer {
   display: flex;
   align-items: center;
