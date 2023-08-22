@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Footer from '../Components/Footer';
 import NavBar from '../Components/NavBar';
 
@@ -19,6 +19,17 @@ import AnimButton from '../Components/AnimButton';
 
 
 const HomeScreen = () => {
+
+  const navigate = useNavigate();
+
+  const navigateToSignIn = () => {
+    navigate("/login")
+  }
+
+  const navigateToGenerateToken = () => {
+    navigate("/token")
+  }
+
   return (
     <>
       <NavBar />
@@ -57,8 +68,8 @@ const HomeScreen = () => {
             </div>
           </div>
           <div className='homeBtnContainer'>
-            <AnimButton>Generate Token</AnimButton>
-            <AnimButton><Link to="/login" className='homeSinBtn'> Sign In</Link></AnimButton>
+            <AnimButton onClick={navigateToGenerateToken}>Generate Token</AnimButton>
+            <AnimButton onClick={navigateToSignIn}> Sign In</AnimButton>
           </div>
 
 

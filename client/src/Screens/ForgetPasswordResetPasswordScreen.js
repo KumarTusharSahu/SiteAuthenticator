@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 function ForgetPasswordResetPasswordScreen() {
   return (
+    <div className="resetBackground">
     <div className="resetContainer">
       <img src={reset} alt="Reset Password" className="resetImage animate__animated animate__bounceIn" />
       <div className="resetRow animate__animated animate__slideInRight">
@@ -48,7 +49,7 @@ function ForgetPasswordResetPasswordScreen() {
         </div>
       </div>
     </div>
-
+</div>
   )
 }
 
