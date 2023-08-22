@@ -11,12 +11,16 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  background: url("../images/milky-way-2695569_1280.jpg");
-  background-repeat: repeat;
-  background-size: cover;
   background-color: #151515;
 }
 
+.backgroundContainer {
+  height: 100vh;
+  width: 100%;
+  background: url("../images/milky-way-2695569_1280.jpg");
+  background-repeat: repeat;
+  background-size: cover;
+}
 
 .forgetContainer {
   display: flex;

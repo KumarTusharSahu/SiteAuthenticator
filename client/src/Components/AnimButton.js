@@ -1,11 +1,11 @@
 import "../Assets/css/AnimButton.css"
 import React from 'react'
 
-const AnimButton = ({ children }) => {
+const AnimButton = ({ children, onClick }) => {
     return (
         <div className="links anim">
             <div className="btncontent">
-                <button><span></span>{children}</button>
+                <button onClick={onClick}><span></span>{children}</button>
             </div>
         </div>
     )

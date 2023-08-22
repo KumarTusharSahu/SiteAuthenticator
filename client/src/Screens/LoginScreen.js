@@ -5,8 +5,8 @@ import Background from "../Components/Background"
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-
-
+import log from "../Assets/images/log.svg"
+import register from "../Assets/images/register.svg"
 
 function LoginScreen() {
   const [user, setUser] = useState("")
@@ -69,7 +69,7 @@ function LoginScreen() {
       <div className={`container ${isSignUpMode ? 'sign-up-mode' : ''}`}>
         <div className="forms-container">
           <div className="signin-signup">
-            <form  className="sign-in-form" method="post" action="/users/create-session">
+            <form className="sign-in-form" method="post" action="/users/create-session">
               <h2 className="title">Sign in</h2>
               <div className="input-field">
                 <i className="fas fa-envelope" />
@@ -134,7 +134,7 @@ function LoginScreen() {
                 Sign up
               </button>
             </div>
-            <img src="images/log.svg" className="image" alt="" />
+            <img src={log} className="image" alt="" />
           </div>
           <div className="panel right-panel">
             <div className="content">
@@ -147,7 +147,7 @@ function LoginScreen() {
                 Sign in
               </button>
             </div>
-            <img src="images/register.svg" className="image" alt="" />
+            <img src={register} className="image" alt="" />
           </div>
         </div>
       </div>
