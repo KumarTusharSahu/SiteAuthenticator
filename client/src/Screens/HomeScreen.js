@@ -1,5 +1,6 @@
-import React from 'react'
 import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from 'react'
+import { Link } from "react-router-dom";
 import Footer from '../Components/Footer';
 import NavBar from '../Components/NavBar';
 
@@ -31,6 +32,14 @@ const HomeScreen = () => {
   const navigateToGenerateToken = () => {
     navigate("/token")
   }
+  const[userData,setUserData]=useState();
+ /* useEffect(()=>{
+    axios.get("http://localhost:8000/users/home",{
+      withCredentials:true
+    }).then((res)=>{
+      console.log(res.data);
+    })
+},[])*/
 
   return (
     <>
