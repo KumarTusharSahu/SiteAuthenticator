@@ -4,6 +4,8 @@ import Footer from '../Components/Footer';
 import NavBar from '../Components/NavBar';
 
 import "../Assets/css/HomeScreen.css"
+import axios from 'axios';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 

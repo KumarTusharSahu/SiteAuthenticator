@@ -70,7 +70,7 @@ const Carousel = () => {
 
 
 
-            <NeonButton next="/home">Getting Started</NeonButton>
+            <NeonButton next="http://localhost:8000/users/login">Getting Started</NeonButton>
 
         </>
 

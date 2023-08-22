@@ -9,7 +9,6 @@ const Footer = () => {
 
     return (
         <>
-
             <footer>
                 <div className="footerrow">
                     <div className="footercol">

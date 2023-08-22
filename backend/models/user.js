@@ -2,10 +2,6 @@ const mongoose = require('mongoose');
 
 const path = require('path');
 
-
-
-
-
 const userSchema = new mongoose.Schema({
     name:{
        type:String,
@@ -45,7 +41,11 @@ const userSchema = new mongoose.Schema({
     },
     score:{
         type:String,
-    }
+    },
+    website:{
+        type:Array,
+       "default":[]
+    },
 
 }, {
     timestamps: true

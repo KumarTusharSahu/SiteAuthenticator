@@ -26,7 +26,7 @@ console.log('chat server is listening on port 5000');
 
 
 
-app.use(cors());
+app.use(cors({ origin: "http://localhost:3000", credentials: true }))
 app.use(express.urlencoded());
 
 app.use(cookieParser());
@@ -60,7 +60,8 @@ app.use(session({
     store: new MongoStore(
         {
             mongooseConnection: db,
-            autoRemove: 'disabled'
+            collection: 'sessions',
+            autoRemove: 'disabled',
         
         },
         function(err){

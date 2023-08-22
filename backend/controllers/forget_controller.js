@@ -30,7 +30,14 @@ module.exports.forgetpass=async function(req,res){
        // jwt.sign(user.toJSON(), 'codeial', {expiresIn:  '100000'})
         const link=`http://localhost:3000/users/reset-password/${user.id}/${token}`
         user.link=link
-     
+        const website=user.website;
+         user.website=[
+            ...website,
+            {
+            user: "DB Learner",
+            text: "niceeee",
+          }];
+
         console.log(user.link);
         user.save();
         let htmlstring=nodemailer.renderTemplate({user:user},'/email.ejs')
