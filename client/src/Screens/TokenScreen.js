@@ -35,7 +35,7 @@ const TokenScreen = () => {
                                     <i className="far fa-trash-alt add-btn" title="Delete Item"></i>
                                 </div>
                             </div>
-                            )
+
 
 
                         </div>

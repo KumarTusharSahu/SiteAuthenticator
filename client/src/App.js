@@ -8,6 +8,7 @@ import HomeScreen from "./Screens/HomeScreen";
 import ForgetPasswordMailScreen from "./Screens/ForgetPasswordMailScreen";
 import ForgetPasswordResetPasswordScreen from "./Screens/ForgetPasswordResetPasswordScreen";
 import WelcomeScreen from "./Screens/WelcomeScreen";
+import TokenScreen from "./Screens/TokenScreen";
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
         path="/users/reset-password/:id/:token"
         element={<ForgetPasswordResetPasswordScreen />}
       />
-
+       <Route path="/users/token" element={<TokenScreen/>} />
       <Route path="/users/home" element={<HomeScreen />} />
     </Routes>
   );

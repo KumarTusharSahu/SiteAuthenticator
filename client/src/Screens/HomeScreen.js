@@ -33,6 +33,7 @@ const HomeScreen = () => {
           setUser({
             userid: res.data._id,
             username: res.data.name,
+            avatar:res.data.avatar
           });
         });
     };
@@ -49,7 +50,7 @@ const HomeScreen = () => {
           <div className="carouselBanner">
             <img src={homeCarousel} alt="" />
             <div className="homeCarousel">
-              <h1>{userData}</h1>
+              <h1>Hello {userData}</h1>
               <h5 className="anim">
                 Find out how SiteAuthenticator has helped professionals around
                 the world increase their productivity and improve their focus
@@ -109,7 +110,10 @@ const HomeScreen = () => {
             </div>
           </div>
           <div className="homeBtnContainer">
-            <AnimButton>Generate Token</AnimButton>
+            <AnimButton><Link to="/users/token" className="homeSinBtn">
+                  {" "}
+                 Generate Token
+                </Link></AnimButton>
             {userData ? null : (
               <AnimButton>
                 <Link to="/users/login" className="homeSinBtn">
