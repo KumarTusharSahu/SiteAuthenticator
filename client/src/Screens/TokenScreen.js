@@ -8,19 +8,21 @@ const TokenScreen = () => {
     return (
         <>
             <div className='tokenContainer animate__animated animate__bounce'>
-                <img src={token} alt="" />
                 <div className='token-main-div'>
                     <div className='token-child-div' >
                         <h1>Add websites to be blocked</h1>
                         <div className='addItems'>
-                            <input type='text' placeholder='✍URL of website...' />
-                            <i className="fa fa-plus add-btn" title="Block URL" ></i>
+                            <input type='text' placeholder='✍Enter URL of website...' />
+                            {/* <i className="fa fa-plus add-btn" title="Block URL" ></i> */}
+                            <button className="add-btn generate-token-btn" title="Block URL">Generate Token</button>
 
 
 
                         </div>
                         <div className="showItems">
 
+                            //map will come here
+                            
                             <div className='eachItem'>
                                 <h3>https://facebook.com</h3>
                                 <div className="token-btn">
@@ -44,6 +46,7 @@ const TokenScreen = () => {
                         </div>
                     </div>
                 </div>
+                <img src={token} alt="" />
             </div>
         </>
     )

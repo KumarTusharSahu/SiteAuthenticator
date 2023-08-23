@@ -2,10 +2,11 @@
   background: #060822;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .tokenContainer img {
-  margin-right: 8rem;
+  margin-right: 4rem;
 }
 
 .token-main-div {
@@ -14,6 +15,7 @@
   display: flex;
   justify-content: center;
   /* align-items: center; */
+  margin-left: 4rem;
 }
 
 .token-child-div {
@@ -23,20 +25,57 @@
 
 .token-child-div h1 {
   color: #fff;
+  font-size: 3rem;
+}
+
+.generate-token-btn{
+  border: none;
+  background: linear-gradient( white, lightgreen);
+  border: 1px solid #ccc;
+  color: #000;
+  font-size: 1.2rem;
+  padding: 10px;
+  margin-bottom: 4px;
+  border-radius: 6px;
+}
+
+.generate-token-btn:hover{
+  background: linear-gradient(to right, lightgreen , yellow);
+  transition: background;
+  transition-duration: 5s;
+}
+
+.generate-token-btn:active{
+  opacity:0.5
+}
+
+.addItems{
+  background-color: #fff;
+  background-image: none;
+  border: 0.1rem solid #ccc;
+  border-radius: 0.4rem;
+  -webkit-box-shadow: inset 0 0.1rem 0.1rem rgb(0 0 0 / 8%);
+  box-shadow: inset 0 0.1rem 0.1rem rgb(0 0 0 / 8%);
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  margin-top: 2rem;
+  padding-right: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .addItems input {
   /* display: block; */
-  min-width: 23rem;
+  min-width: 28rem;
   height: 2.8rem;
-  padding: 1rem;
-  font-size: 1rem;
+  padding: 0.8rem;
+  font-size: 1.8rem;
   line-height: 1.42857143;
-  margin-top: 2rem;
+  /* margin-top: 2rem; */
   color: rgb(58, 57, 57);
   background-color: #fff;
   background-image: none;
-  border: 0.1rem solid #ccc;
+  /* border: 0.1rem solid #ccc; */
   border-radius: 0.4rem;
   -webkit-box-shadow: inset 0 0.1rem 0.1rem rgb(0 0 0 / 8%);
   box-shadow: inset 0 0.1rem 0.1rem rgb(0 0 0 / 8%);
@@ -57,10 +96,11 @@
   -webkit-transition: all 0.2s linear;
   transition: all 0.2s linear;
 }
-.addItems input:focus {
+
+/* .addItems input:focus {
   -webkit-box-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.2);
   box-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.2);
-}
+} */
 
 .token-btn {
   width: 5rem;

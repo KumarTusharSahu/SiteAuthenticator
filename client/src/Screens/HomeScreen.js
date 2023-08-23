@@ -166,7 +166,7 @@ const HomeScreen = () => {
               One of the most effective skills you can have in life is effective
               time management. If you’re not managing your time well, you won’t
               be able to reach your professional or personal goals. With the
-              various features available on BlockSite your time management
+              various features available on SiteAuthenticator your time management
               schedule will never look better.
             </p>
             <p>
@@ -178,7 +178,7 @@ const HomeScreen = () => {
             <p>
               The time has come to increase productivity. So, whether you’re at
               work, studying at school or just looking for a way to get more
-              done during the day, BlockSite has the best tools to help you
+              done during the day, SiteAuthenticator has the best tools to help you
               improve your productivity and get the results you want quickly and
               effectively.
             </p>
