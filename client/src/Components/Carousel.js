@@ -11,6 +11,7 @@ import studying from "../Assets/images/studying.png"
 import NeonButton from './NeonButton';
 
 const Carousel = () => {
+    
     return (
         <>
 
@@ -70,7 +71,7 @@ const Carousel = () => {
 
 
 
-            <NeonButton next="/users/home">Getting Started</NeonButton>
+            <NeonButton >Getting Started</NeonButton>
 
         </>
 

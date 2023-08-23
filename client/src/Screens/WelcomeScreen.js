@@ -10,8 +10,18 @@ import background5 from "../Assets/images/main-bg-3.png";
 import slideBorder from "../Assets/images/slideBorder.svg";
 
 import Carousel from '../Components/Carousel';
+import axios from 'axios';
 
 const WelcomeScreen = () => {
+
+  const login=()=>{
+     axios.get("http://localhost:8000/users/login",{
+      withCredentials:true
+     }).then(()=>{
+      console.log("runing")
+     })
+  }
+
   return (
     <>
       <div className="welcomeContainer">

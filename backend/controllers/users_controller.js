@@ -7,11 +7,13 @@ module.exports.login=function (req,res){
 
 }
 module.exports.authentication = function (req, res) {
-  if (req.isAuthenticated()) {
-    return res.redirect("http://localhost:3000/users/home");
-  }
-console.log("hello")
-  return res.redirect("http://localhost:3000/users/login");
+
+  if (req.isAuthenticated()){
+    return  res.send("home")
+}
+
+  return res.send("login")
+  
 };
 
 module.exports.create = async function (req, res) {
@@ -42,7 +44,7 @@ module.exports.create = async function (req, res) {
 
 module.exports.createSession =  function (req, res) {
   
-  return res.redirect("/users/home");
+  return res.redirect("http://localhost:3000/users/home");
 };
 
 module.exports.destroySession = function (req, res) {
