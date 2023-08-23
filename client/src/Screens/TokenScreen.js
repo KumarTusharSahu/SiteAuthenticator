@@ -14,7 +14,7 @@ const TokenScreen = () => {
                         <h1>Add websites to be blocked</h1>
                         <div className='addItems'>
                             <input type='text' placeholder='✍URL of website...' />
-                            <i className="fa fa-plus add-btn" title="Add URL" ></i>
+                            <i className="fa fa-plus add-btn" title="Block URL" ></i>
 
 
 
@@ -25,7 +25,7 @@ const TokenScreen = () => {
                                 <h3>https://facebook.com</h3>
                                 <div className="token-btn">
                                     <i className="far fa-edit add-btn" title="Edit URl" ></i>
-                                    <i className="far fa-trash-alt add-btn" title="Delete URL"></i>
+                                    <i className="far fa-trash-alt add-btn" title="Remove URL"></i>
                                 </div>
                             </div>
                             <div className='eachItem'>
