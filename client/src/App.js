@@ -12,17 +12,19 @@ import TokenScreen from "./Screens/TokenScreen";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<WelcomeScreen />} />
-      <Route path="/users/login" element={<LoginScreen />} />
-      <Route path="/users/forgetmail" element={<ForgetPasswordMailScreen />} />
-      <Route
-        path="/users/reset-password/:id/:token"
-        element={<ForgetPasswordResetPasswordScreen />}
-      />
-       <Route path="/users/token" element={<TokenScreen/>} />
-      <Route path="/users/home" element={<HomeScreen />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/" element={<WelcomeScreen />} />
+        <Route path="/users/login" element={<LoginScreen />} />
+        <Route path="/users/forgetmail" element={<ForgetPasswordMailScreen />} />
+        <Route
+          path="/users/reset-password/:id/:token"
+          element={<ForgetPasswordResetPasswordScreen />}
+        />
+        <Route path="/users/token" element={<TokenScreen />} />
+        <Route path="/users/home" element={<HomeScreen />} />
+      </Routes>
+    </>
   );
 }
 
