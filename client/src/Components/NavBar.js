@@ -3,6 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import { Link } from "react-router-dom";
 import "../Assets/css/NavBar.css"
+import { useState } from "react";
+import Profile from "./Profile";
 
 function NavBar({user}) {
  console.log(user);
@@ -15,9 +17,26 @@ function NavBar({user}) {
       }
     })
   }
+
+  const [showProfile, setShowProfile] = useState(false);
+
+
+const toggleProfileHandler = () => {
+  if (showProfile) {
+    setShowProfile(false);
+    console.log("active tha")
+  }
+  if (!showProfile) {
+    setShowProfile(true);
+    console.log("active nahi tha")
+  }
+}
+
   return (
+    <>
+    {showProfile ? <Profile/> : ""}
     <nav className="navbar navbar-expand-lg px-5 fixed-top">
-      <a className="nav-item nav-link move" href="#" title="Profile">{user.avatar ?  <img src={user.avatar} alt="@@" className="userimg" height={44} style={{borderRadius:24}}/> : <i className="fa-solid fa-circle-user fa-2x"></i>}</a>
+      <a className="nav-item nav-link move" href="#" title="Profile" onClick={toggleProfileHandler}>{user.avatar ?  <img src={user.avatar} alt="@@" className="userimg" height={44} style={{borderRadius:24}}/> : <i className="fa-solid fa-circle-user fa-2x"></i>}</a>
 
       <a className="navbar-brand mx-3" href="#" style={{ color: "white" }}>SiteAuthenticator</a>
       <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,6 +55,7 @@ function NavBar({user}) {
         </div>
       </div>
     </nav>
+    </>
   );
 }
 

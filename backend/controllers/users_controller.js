@@ -45,7 +45,7 @@ module.exports.create = async function (req, res) {
 
 module.exports.createSession =  function (req, res) {
   
-  return res.redirect("http://localhost:3000/users/home");
+  return res.redirect("http://localhost:3000/users/login")
 };
 
 module.exports.destroySession = function (req, res) {
