@@ -14,13 +14,7 @@ import axios from 'axios';
 
 const WelcomeScreen = () => {
 
-  const login=()=>{
-     axios.get("http://localhost:8000/users/login",{
-      withCredentials:true
-     }).then(()=>{
-      console.log("runing")
-     })
-  }
+  
 
   return (
     <>

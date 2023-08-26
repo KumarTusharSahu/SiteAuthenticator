@@ -4,12 +4,18 @@ import '../Assets/css/style.css';
 import Background from "../Components/Background"
 import { Link } from "react-router-dom";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 import log from "../Assets/images/log.svg"
 import register from "../Assets/images/register.svg"
+import { ToastContainer, toast } from "react-toastify";
 
 function LoginScreen() {
+  const navigate=useNavigate();
   const [user, setUser] = useState("")
+  const [email,setEmail]= useState("");
+  const [password,setPassword]= useState("");
+  const [name,setName]= useState("");
+
 
   useEffect(()=>{
     const login=()=>{
@@ -34,9 +40,8 @@ function LoginScreen() {
   }
  
 
+ 
 
- 
- 
   /*const login = ()=>{
     axios.post("http://localhost:8000/users/create-session",{
         email:email,
@@ -50,10 +55,31 @@ function LoginScreen() {
   });
   }*/
 
+  /*const  create = async (e) =>{
+    e.preventdefault();
+    const data ={
+      name,
+      email,
+      password
+    }
+  try {
+    const res=await axios.post("http://localhost:8000/users/create",data);
+    if(res.data.status===true){
+      navigate('/users/login')
+      toast.success("SignUp Success ");
+    }else{
+      toast.error(res.data.message)
+    }
+  } catch (error) {
+    toast.error("error in create account");
+  }
+  }*/
+
   const [isSignUpMode, setIsSignUpMode] = useState(false);
 
   const handleSignUpClick = () => {
     setIsSignUpMode(true);
+    toast.success("hello broo");
   }
 
   const handleSignInClick = () => {
@@ -63,7 +89,7 @@ function LoginScreen() {
 
   return (
     <>
-
+    <ToastContainer/>
       <Background entered={false} />
 
       <div className={`container ${isSignUpMode ? 'sign-up-mode' : ''}`}>
@@ -93,19 +119,19 @@ function LoginScreen() {
                 </a>
               </div>
             </form>
-            <form action="/users/create" className="sign-up-form" method="POST">
+            <form  method="post" action="/users/create" className="sign-up-form" >
               <h2 className="title">Sign up</h2>
               <div className="input-field">
                 <i className="fas fa-user" />
-                <input type="text" placeholder="Username" name="name" />
+                <input type="text" placeholder="Username" name="name" onChange={(e) => setName(e.target.value)}/>
               </div>
               <div className="input-field">
                 <i className="fas fa-envelope" />
-                <input type="email" placeholder="Email" name="email" />
+                <input type="email" placeholder="Email" name="email" onChange={(e) => setEmail(e.target.value)}/>
               </div>
               <div className="input-field">
                 <i className="fas fa-lock" />
-                <input type="password" placeholder="Password" name="password" />
+                <input type="password" placeholder="Password" name="password" onChange={(e) => setPassword(e.target.value)} />
               </div>
               <input type="submit" className="btn1" defaultValue="Sign up" />
               <p className="social-text">Or Sign up with social platforms</p>
