@@ -21,7 +21,7 @@ const TokenScreen = () => {
               withCredentials: true,
             })
             .then((res) => {
-              setData(res.data);
+              setData(res.data.website[0].site);
             });
         };
     
@@ -42,19 +42,21 @@ const TokenScreen = () => {
             console.log(error); 
         }
     }*/
+    console.log(data)
     const addItem =  (e) => {
-        console.log(data)
+        
         e.preventDefault();
         if (!inputData) {
             alert("Please enter a valid url");
         } else if (inputData && !toggleSubmit) {
 
             setItems(
-                items.map((elem) => {
-                    if (elem.id === isEditItem) {
+                data.map((elem) => {
+                   /* if (elem.id === isEditItem) {
                         return { ...elem, name: inputData }
                     }
-                    return elem;
+                    return elem;*/
+                    console.log(elem);
                 })
 
             )
