@@ -9,6 +9,7 @@ router.post('/link',forget.forgetpass);
 router.get('/reset-password/:id/:token',forget.resetpassword);
 router.post('/reset-password/:id/:token',forget.reset);
 router.get('/login',auth.authentication)
+
 router.post('/create', auth.create);
 router.post('/create-session', passport.authenticate(
     'local',

@@ -71,10 +71,14 @@ module.exports.resetpassword=async function(req,res){
      }
 
 
+
      const secret=JWT_SECRET+user.password;
      try{
+
        const payload=jwt.verify(token,secret)
        res.render('reset_password',{email:user.email})
+
+       
      }catch(error){
         console.log(error.message);
         res.send(error.message);

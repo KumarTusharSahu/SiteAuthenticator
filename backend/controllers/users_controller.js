@@ -30,15 +30,16 @@ module.exports.create = async function (req, res) {
       function (err, user) {
         if (err) {
           console.log("error in creating account", err);
-          return;
+          return res.status(500).send({status:false,message:"error in creating account"});
         }
-        return res.redirect("http://localhost:3000/users/login");
+
+        return res.redirect('/users/login')
       }
     );
   } else {
     console.log("you have signed up");
 
-    return res.redirect("http://localhost:3000/users/login");
+    return res.redirect("/users/login")
   }
 };
 
