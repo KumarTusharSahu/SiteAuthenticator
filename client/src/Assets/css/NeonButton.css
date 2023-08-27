@@ -29,3 +29,18 @@
   letter-spacing: 4px;
   transition: 0.5s;
 }
+
+
+@media(max-width:415px){
+  .glow{
+    font-size: 16px;
+    margin-top: 16vh;
+  }
+
+}
+
+@media(max-width:360px){
+  .glow{
+    font-size: 14px;
+  }
+}

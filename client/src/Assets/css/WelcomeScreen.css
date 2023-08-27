@@ -82,3 +82,43 @@
   top: -50px;
   margin-left: 10%;
 }
+
+@media (max-width: 415px) {
+  .welcome div {
+    margin-left: 8px;
+  }
+
+  .welcomebox {
+    margin-left: 12rem;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 40px;
+  }
+
+  .mainHeading {
+    font-size: 6vh;
+    margin-bottom: 8px;
+  }
+
+  .subHeading {
+    font-size: 4vh;
+  }
+
+  .mountain {
+    width: 50%;
+  }
+
+  .horse {
+    height: 20vh;
+    width: 25vh;
+    margin-top: 17rem;
+    margin-right: 4vh;
+  }
+
+  .slideBorder{
+    
+    width: 90%;
+  }
+
+  
+}
