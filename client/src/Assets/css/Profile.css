@@ -9,6 +9,10 @@
     color:red;
 }
 
+.wrapper .sidebar ul li a {
+  display: inline;
+}
+
 
 
 

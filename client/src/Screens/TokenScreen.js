@@ -96,6 +96,7 @@ const TokenScreen = () => {
         setIsEditItem(id);
     }
 
+
     return (
         <>
             <div className='tokenContainer animate__animated animate__bounce'>
@@ -103,7 +104,7 @@ const TokenScreen = () => {
                     <div className='token-child-div' >
                         <h1>Add websites to be blocked</h1>
                         <div className='addItems'>
-                            <form method='post' action='http://localhost:8000/users/token'>
+                            <form method='post' action='http://localhost:8000/users/token' className='tokenForm'>
                                 <input
                                     type='text'
                                     placeholder='✍Enter URL of website...'
@@ -135,6 +136,7 @@ const TokenScreen = () => {
                                     <div className='eachItem' key={elem.id}>
                                         <h3>{elem.site}</h3>
                                         <h6>{elem.id}</h6>
+                                        <i class="fa-solid fa-copy"></i>
                                     </div>
                                 )
                             })}</h1>

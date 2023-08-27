@@ -5,6 +5,11 @@
   justify-content: space-between;
 }
 
+.tokenForm{
+  padding: 0px;
+  flex-direction: row;
+}
+
 .tokenContainer img {
   margin-right: 4rem;
 }

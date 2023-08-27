@@ -1,0 +1,103 @@
+.outerProfile {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.outerProfile h1{
+  color: cyan;
+  text-shadow: 3px 3px grey;
+  margin: 1rem;
+}
+
+.dialog {
+  background-color: white;
+  margin-left: 2rem;
+  padding: 16px;
+  border-radius: 16px;
+}
+
+.editAvatar {
+  display: flex;
+}
+
+.avatar {
+  margin-top: 1rem;
+  border: 2px solid white;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+}
+
+.alignRight {
+  text-align: right;
+}
+
+.dialog .alignRight i{
+  margin-bottom: 1.5rem;
+}
+
+.dialog button {
+  background-color: blue;
+  color: white;
+  padding: 4px 16px;
+  border-radius: 16px;
+  margin-top: 16px;
+}
+
+.dialog button:hover {
+  background-color: white;
+  color: blue;
+}
+
+.textUpdate {
+  width: 70%;
+  border: 2px solid white;
+  color: white;
+  padding: 2rem;
+  border-radius: 16px;
+  margin-top: 4rem;
+}
+
+.textUpdate span {
+  font-size: 20px;
+  width: 240px;
+  display: inline-block;
+}
+
+.textUpdate button{
+  background-color: inherit;
+  border: 1px solid white;
+  color: white;
+  padding: 4px 16px;
+  border-radius: 16px;
+  margin-top: 16px;
+}
+
+.textUpdate button:hover{
+  transition: background-color color 2s;
+  background-color: white;
+  color: black;
+  padding: 6px 20px;
+}
+
+.radio {
+  margin-left: 2.5rem;
+}
+
+.profileInput {
+  width: 20rem;
+  border-radius: 8px ;
+  padding: 4px 8px;
+}
+
+.profileInput:focus {
+  padding: 6px 12px;
+  border-radius: 20px ;
+}
+
+.profileItem {
+  font-size: 20px;
+  margin: 2vh;
+}
