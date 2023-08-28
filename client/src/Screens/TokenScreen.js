@@ -14,6 +14,8 @@ const TokenScreen = () => {
     const [toggleSubmit, setToggleSubmit] = useState(true);
     const [isEditItem, setIsEditItem] = useState();
 
+    // const [copied, setCopied] = useState(false);
+
     useEffect(() => {
         const token = () => {
             axios
@@ -29,6 +31,7 @@ const TokenScreen = () => {
         token();
     }, []);
 
+
     /*const addweb=async (e)=>{
         e.preventDefault();
         const data=location.state.data;
@@ -43,7 +46,7 @@ const TokenScreen = () => {
             console.log(error); 
         }
     }*/
-    console.log(data);
+    // console.log(data);
 
     const addItem = (e) => {
         e.preventDefault();
@@ -96,6 +99,23 @@ const TokenScreen = () => {
         setIsEditItem(id);
     }
 
+    const copyToClipboard = (id) => {
+
+        let elemClicked = data.find((elem) => {
+            return elem.id === id
+        })
+
+        // setCopied(true);
+
+        navigator.clipboard.writeText(elemClicked.id);
+        // setTimeout(() => {
+        //     setCopied(false);
+        // }, 1000);
+
+
+
+
+    }
 
     return (
         <>
@@ -131,15 +151,24 @@ const TokenScreen = () => {
 
                         </div>
                         <div className="showItems">
-                            <h1>{data.map((elem) => {
-                                return (
-                                    <div className='eachItem' key={elem.id}>
-                                        <h3>{elem.site}</h3>
-                                        <h6>{elem.id}</h6>
-                                        <i class="fa-solid fa-copy"></i>
-                                    </div>
-                                )
-                            })}</h1>
+                            <h1>
+                                {
+                                    data.map((elem) => {
+                                        return (
+                                            <div className='eachItem' key={elem.id}>
+                                                <div><h3>{elem.site}</h3></div>
+                                                <div className='token'>
+                                                    <h6>{elem.id}</h6>
+                                                    {
+                                                         <i className="fa-solid fa-copy copy" onClick={() => copyToClipboard(elem.id)} title="copy token" id={elem.id}></i>
+                                                    }
+
+                                                </div>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </h1>
 
                             {/* {
                                 items.map((elem) => {
