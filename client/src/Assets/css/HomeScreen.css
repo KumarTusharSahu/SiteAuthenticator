@@ -118,8 +118,8 @@
 
 @media (max-width: 415px) {
   .gridContainer {
-    grid-template-columns: repeat(1, auto);
-    margin: 2vh;
+    grid-template-columns: repeat(2, auto);
+    margin: 2vh 3vh;
     row-gap: 1rem;
   }
 }
@@ -155,4 +155,47 @@
 
 .introContent p {
   font-size: 16px;
+}
+
+
+@media (max-width:415px){
+  .carouselBanner {
+    flex-direction: column;
+  }
+
+  .homeCarousel h5 {
+    width: 90vw;
+    padding-left: 2rem; 
+    text-align: justify;
+  }
+
+  .carouselStyle {
+    width: 80vw;
+    height: 25vh;
+    margin-left: 6rem ;
+  }
+
+  .homeBtnContainer{
+    align-items: center;
+    flex-direction: column;
+
+  }
+
+  .gridHeading {
+    margin-top: 29rem;
+  }
+
+  .intro{
+    flex-direction: column;
+    margin:8vh 2vh
+  }
+
+  .introContent{
+    width: 80vw;
+  }
+
+  .intro img{
+    width:10rem;
+    height: 10rem;
+  }
 }

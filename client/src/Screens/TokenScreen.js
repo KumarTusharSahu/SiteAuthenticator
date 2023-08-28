@@ -13,6 +13,7 @@ const TokenScreen = () => {
     const [items, setItems] = useState([]);
     const [toggleSubmit, setToggleSubmit] = useState(true);
     const [isEditItem, setIsEditItem] = useState();
+    const [isBlocked, setIsBlocked] = useState(false);
 
     // const [copied, setCopied] = useState(false);
 
@@ -117,6 +118,10 @@ const TokenScreen = () => {
 
     }
 
+    const blockSiteHandler = () => {
+        setIsBlocked(!isBlocked);
+    }
+
     return (
         <>
             <div className='tokenContainer animate__animated animate__bounce'>
@@ -156,7 +161,10 @@ const TokenScreen = () => {
                                     data.map((elem) => {
                                         return (
                                             <div className='eachItem' key={elem.id}>
-                                                <div><h3>{elem.site}</h3></div>
+                                            <div className={`url ${ isBlocked ? 'blockedSite' : ""}`}>
+                                                <h3>{elem.site}</h3>
+                                                <button className={isBlocked ? 'unblock':'block'} onClick={blockSiteHandler}>{isBlocked ? "Unblock" : "Block"}</button>
+                                                </div>
                                                 <div className='token'>
                                                     <h6>{elem.id}</h6>
                                                     {
