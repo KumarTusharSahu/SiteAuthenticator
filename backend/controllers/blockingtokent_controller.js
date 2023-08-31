@@ -54,7 +54,7 @@ let delay = 10000; // 10 seconds
   // Compare whether the current time is free time or block time
   let hours = date.getHours();
   // Blocking our website from 2pm to 6pm
-  if(hours >= 12 && hours < 19) {
+  if(hours >= 12 && hours < 23) {
       console.log('Time to block websites');
       fs.readFile(filePath, (err, data) => {
           // Throw error in case something went wrong!
@@ -175,6 +175,41 @@ module.exports.unblock=async function(req,res){
 
 module.exports.removeall=async function(req,res){
     const user =await User.findById(req.user._id);
+    const websites=user.website;
+    const filePath = "C:\\Windows\\System32\\drivers\\etc\\hosts";
+     let completeContent = '';
+
+     // Read  file line by line
+     fs.readFileSync(filePath)
+         .toString()
+         .split('\n')
+         .forEach((line) => {
+             // console.log(line);
+             let flag = 1;
+             // Loop through each website from website list
+             for (let i=0; i<websites.length; i++) {
+                 // Check whether the current line contains any blocked website
+                 if (line.indexOf(websites[i].site) >= 0) {
+                     flag = 0;
+                     break;
+                 }
+             }
+
+             if (flag == 1) {
+                 if (line === '')
+                     completeContent += line;
+                 else
+                     completeContent += line + "\n";
+             }
+
+         });
+
+         // Replace the contents of file by completeContent
+     fs.writeFile(filePath, completeContent, (err) => {
+         if (err) {
+             return console.log('Error!', err);
+         }
+     });
     user.website=[];
     await user.save();
     return res.redirect("http://localhost:3000/users/token");
