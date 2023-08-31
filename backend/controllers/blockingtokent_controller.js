@@ -5,9 +5,15 @@ module.exports.starttoken = function (req, res) {
   return res.json(req.user);
 };
 module.exports.token = function (req, res) {
-  console.log(req.body.site);
   const user = req.user;
-  const Prevwebiste = req.user.website;
+//   if(!req.user.webiste){
+//     const webiste = {
+//         id: Crypto.randomBytes(21).toString("base64").slice(0, 21),
+//         site: req.body.site,
+//         createdAt: Math.floor(Date.now() / 1000),
+//       };
+//   }
+  const Prevwebiste = req.user.website ?req.user.website: [];
   console.log(Prevwebiste);
   const webiste = {
     id: Crypto.randomBytes(21).toString("base64").slice(0, 21),
@@ -21,7 +27,10 @@ module.exports.token = function (req, res) {
   return res.redirect("http://localhost:3000/users/token");
 };
 
-module.exports.blocker = function(req,res){
+module.exports.blocker = async function(req,res){
+    const user =await User.findById(req.user._id);
+   
+    const websites=user.website;
   // Make a variable to store path of hosts file
 //const filePath =  "/etc/hosts"; 
 // Note* If you are a windows user, your file path should be C:\Windows\System32\drivers\etc\hosts
@@ -33,10 +42,10 @@ const filePath = "C:\\Windows\\System32\\drivers\\etc\\hosts";
 
 // Store the redirection path in a variable
 // The websites in the block list will be directed to localhost (127.0.0.1)
-const redirectPath = "157.240.239.35";
+const redirectPath = "127.0.0.1";
 
 // List of websities to be blocked
-let websites = ["https://www.business.org/","https://www.oneplus.in/","www.oneplus.in","https://www.xnxx.press/","xnxx.press","www.youtube.com","https://www.youtube.com/","www.business.org","business.org","https://www.facebook.com/","www.facebook.com"];
+// let websites = ["https://www.business.org/","https://www.oneplus.in/","www.oneplus.in","https://www.xnxx.press/","xnxx.press","www.youtube.com","https://www.youtube.com/","www.business.org","business.org","https://www.facebook.com/","www.facebook.com"];
 
 // Set delay (Time interval after which our script should execute)
 let delay = 10000; // 10 seconds
@@ -45,7 +54,7 @@ let delay = 10000; // 10 seconds
   // Compare whether the current time is free time or block time
   let hours = date.getHours();
   // Blocking our website from 2pm to 6pm
-  if(hours >= 12 && hours < 16) {
+  if(hours >= 12 && hours < 19) {
       console.log('Time to block websites');
       fs.readFile(filePath, (err, data) => {
           // Throw error in case something went wrong!
@@ -62,7 +71,7 @@ let delay = 10000; // 10 seconds
            * else, write the websites and redirect address in the file
            */
           for(let i=0;i<websites.length;i++) {
-              let addWebsite = "\n" + redirectPath + " " + websites[i];
+              let addWebsite = "\n" + redirectPath + " " + websites[i].site;
               if (fileContents.indexOf(addWebsite) < 0) {
                   console.log('Website: ' + addWebsite + ' is not present');
                   fs.appendFile(filePath, addWebsite, (err) => {
@@ -97,7 +106,7 @@ let delay = 10000; // 10 seconds
               // Loop through each website from website list
               for (let i=0; i<websites.length; i++) {
                   // Check whether the current line contains any blocked website
-                  if (line.indexOf(websites[i]) >= 0) {
+                  if (line.indexOf(websites[i].site) >= 0) {
                       flag = 0;
                       break;
                   }
@@ -121,3 +130,53 @@ let delay = 10000; // 10 seconds
   }
   return res.redirect("http://localhost:3000/users/token");
 };
+
+module.exports.unblock=async function(req,res){
+    console.log('Time to unblock websites');
+
+    const user =await User.findById(req.user._id);
+    const websites=user.website;
+    const filePath = "C:\\Windows\\System32\\drivers\\etc\\hosts";
+     let completeContent = '';
+
+     // Read  file line by line
+     fs.readFileSync(filePath)
+         .toString()
+         .split('\n')
+         .forEach((line) => {
+             // console.log(line);
+             let flag = 1;
+             // Loop through each website from website list
+             for (let i=0; i<websites.length; i++) {
+                 // Check whether the current line contains any blocked website
+                 if (line.indexOf(websites[i].site) >= 0) {
+                     flag = 0;
+                     break;
+                 }
+             }
+
+             if (flag == 1) {
+                 if (line === '')
+                     completeContent += line;
+                 else
+                     completeContent += line + "\n";
+             }
+
+         });
+
+         // Replace the contents of file by completeContent
+     fs.writeFile(filePath, completeContent, (err) => {
+         if (err) {
+             return console.log('Error!', err);
+         }
+     });
+ return res.redirect("http://localhost:3000/users/token");
+}
+
+module.exports.removeall=async function(req,res){
+    const user =await User.findById(req.user._id);
+    user.website=[];
+    await user.save();
+    return res.redirect("http://localhost:3000/users/token");
+
+}

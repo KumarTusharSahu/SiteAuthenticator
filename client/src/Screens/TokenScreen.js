@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import "../Assets/css/TokenScreen.css"
 import 'animate.css';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import token from "../Assets/images/token.webp"
 import axios from 'axios';
 
 const TokenScreen = () => {
     const location = useLocation();
-
+   const navigate=useNavigate();
     const [data, setData] = useState([]);
     const [inputData, setInputData] = useState("");
     const [items, setItems] = useState([]);
@@ -18,8 +18,8 @@ const TokenScreen = () => {
     // const [copied, setCopied] = useState(false);
 
     useEffect(() => {
-        const token = () => {
-            axios
+        const token = async () => {
+            await axios
                 .get("http://localhost:8000/users/token", {
                     withCredentials: true,
                 })
@@ -31,6 +31,34 @@ const TokenScreen = () => {
 
         token();
     }, []);
+
+    const block = async () => {
+        await axios
+            .get("http://localhost:8000/users/block", {
+                withCredentials: true,
+            })
+    };
+    const unblock = async () => {
+        await axios
+            .get("http://localhost:8000/users/unblock", {
+                withCredentials: true,
+            })
+    };
+    const removeall = async () => {
+        try {
+            await axios
+                .delete("http://localhost:8000/users/removeall", {
+                    withCredentials: true,
+                })
+            
+        } catch (error) {
+            console.log("error")
+        }
+
+           
+           
+
+    };
 
 
     /*const addweb=async (e)=>{
@@ -119,8 +147,18 @@ const TokenScreen = () => {
 
     }
 
-    const blockSiteHandler = () => {
+    const blockSiteHandler = async() => {
+        
         setIsBlocked(!isBlocked);
+        if(isBlocked){
+            await unblock();
+          }
+          else{
+            await block(); 
+            
+          }
+
+      
     }
 
     return (
@@ -143,6 +181,7 @@ const TokenScreen = () => {
                                     toggleSubmit ? <button
                                         className="add-btn generate-token-btn"
                                         title="Block URL"
+                                        
                                     >
                                         Generate Token
                                     </button>
@@ -194,7 +233,7 @@ const TokenScreen = () => {
                             } */}
                         </div>
                         <div className="showItems">
-                            <button className="tokenbtn effect04" data-sm-link-text="Remove All" onClick={removeAll}><span> CHECK LIST </span> </button>
+                            <button className="tokenbtn effect04" data-sm-link-text="Remove All" onClick={removeall}><span> CHECK LIST </span> </button>
                         </div>
                     </div>
                 </div>
