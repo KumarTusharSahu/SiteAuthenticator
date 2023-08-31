@@ -6,28 +6,29 @@ import token from "../Assets/images/token.webp"
 import axios from 'axios';
 
 const TokenScreen = () => {
-    const location=useLocation();
+    const location = useLocation();
 
-    const [data,setData]=useState();
+    const [data, setData] = useState([]);
     const [inputData, setInputData] = useState("");
     const [items, setItems] = useState([]);
     const [toggleSubmit, setToggleSubmit] = useState(true);
     const [isEditItem, setIsEditItem] = useState();
-   
+
     useEffect(() => {
         const token = () => {
-          axios
-            .get("http://localhost:8000/users/token", {
-              withCredentials: true,
-            })
-            .then((res) => {
-              setData(res.data.website[0].site);
-            });
+            axios
+                .get("http://localhost:8000/users/token", {
+                    withCredentials: true,
+                })
+                .then((res) => {
+                    // console.log(res);
+                    setData(res.data.website);
+                });
         };
-    
+
         token();
-      }, []);
-    
+    }, []);
+
     /*const addweb=async (e)=>{
         e.preventDefault();
         const data=location.state.data;
@@ -42,9 +43,9 @@ const TokenScreen = () => {
             console.log(error); 
         }
     }*/
-    console.log(data)
-    const addItem =  (e) => {
-        
+    console.log(data);
+
+    const addItem = (e) => {
         e.preventDefault();
         if (!inputData) {
             alert("Please enter a valid url");
@@ -104,24 +105,24 @@ const TokenScreen = () => {
                         <h1>Add websites to be blocked</h1>
                         <div className='addItems'>
                             <form method='post' action='http://localhost:8000/users/token'>
-                            <input
-                                type='text'
-                                placeholder='✍Enter URL of website...'
-                                name ="site"
-                                value={inputData}
-                                onChange={(event) => {
-                                    setInputData(event.target.value);
-                                }} />
-                            {
-                                toggleSubmit ? <button
-                                    className="add-btn generate-token-btn"
-                                    title="Block URL"
-                                >
-                                    Generate Token
-                                </button>
-                                    :
-                                    <i className="far fa-edit add-btn" title="Update URL" onClick={addItem}></i>
-                            }
+                                <input
+                                    type='text'
+                                    placeholder='✍Enter URL of website...'
+                                    name="site"
+                                    value={inputData}
+                                    onChange={(event) => {
+                                        setInputData(event.target.value);
+                                    }} />
+                                {
+                                    toggleSubmit ? <button
+                                        className="add-btn generate-token-btn"
+                                        title="Block URL"
+                                    >
+                                        Generate Token
+                                    </button>
+                                        :
+                                        <i className="far fa-edit add-btn" title="Update URL" onClick={addItem}></i>
+                                }
                             </form>
 
 
@@ -130,8 +131,16 @@ const TokenScreen = () => {
 
                         </div>
                         <div className="showItems">
+                            <h1>{data.map((elem) => {
+                                return (
+                                    <div className='eachItem' key={elem.id}>
+                                        <h3>{elem.site}</h3>
+                                        <h6>{elem.id}</h6>
+                                    </div>
+                                )
+                            })}</h1>
 
-                            {
+                            {/* {
                                 items.map((elem) => {
                                     return (
                                         <div className='eachItem' key={elem.id}>
@@ -143,7 +152,7 @@ const TokenScreen = () => {
                                         </div>
                                     )
                                 })
-                            }
+                            } */}
                         </div>
                         <div className="showItems">
                             <button className="tokenbtn effect04" data-sm-link-text="Remove All" onClick={removeAll}><span> CHECK LIST </span> </button>
