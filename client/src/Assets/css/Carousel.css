@@ -46,3 +46,48 @@
   display: flex;
   justify-content: space-between;
 }
+
+
+@media (max-width:415px){
+  .slideContent{
+    display: block;
+  }
+
+  .slideLeft{
+    padding-right: 16px;
+    margin-top: 4rem;
+    width: 90vw;
+    
+  }
+
+  .slideLeft h1 {
+    font-size: 19px;
+  }
+  
+  .slideLeft span {
+    font-size: 18px;
+    width: 20%;
+    height: 40px;
+
+  }
+
+  .slideRight img {
+    width: 20rem;
+    height: 20rem;
+}
+
+  .carousel1 {
+    width: 90vw;
+    height: 50vh;
+    top: -4rem;
+    /* border: 1px solid red; */
+    align-items: center;
+    justify-content: center;
+  }
+
+  .carousel-indicators {
+    bottom: -120px;
+  }
+
+
+}

@@ -10,6 +10,7 @@ import ForgetPasswordResetPasswordScreen from "./Screens/ForgetPasswordResetPass
 import WelcomeScreen from "./Screens/WelcomeScreen";
 import TokenScreen from "./Screens/TokenScreen";
 import { ToastContainer } from "react-toastify";
+import EditProfile from "./Screens/EditProfile";
 
 function App() {
   return (
@@ -29,6 +30,8 @@ function App() {
           />
           <Route path="/users/token" element={<TokenScreen />} />
           <Route path="/users/home" element={<HomeScreen />} />
+          <Route path="/users/editprofile" element={<EditProfile />} />
+
         </Routes>
       </BrowserRouter>
     </>

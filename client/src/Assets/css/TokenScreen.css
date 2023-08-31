@@ -5,6 +5,11 @@
   justify-content: space-between;
 }
 
+.tokenForm {
+  padding: 0px;
+  flex-direction: row;
+}
+
 .tokenContainer img {
   margin-right: 4rem;
 }
@@ -28,9 +33,9 @@
   font-size: 3rem;
 }
 
-.generate-token-btn{
+.generate-token-btn {
   border: none;
-  background: linear-gradient( white, lightgreen);
+  background: linear-gradient(white, lightgreen);
   border: 1px solid #ccc;
   color: #000;
   font-size: 1.2rem;
@@ -39,17 +44,17 @@
   border-radius: 6px;
 }
 
-.generate-token-btn:hover{
-  background: linear-gradient(to right, lightgreen , yellow);
+.generate-token-btn:hover {
+  background: linear-gradient(to right, lightgreen, yellow);
   transition: background;
   transition-duration: 5s;
 }
 
-.generate-token-btn:active{
-  opacity:0.5
+.generate-token-btn:active {
+  opacity: 0.5;
 }
 
-.addItems{
+.addItems {
   background-color: #fff;
   background-image: none;
   border: 0.1rem solid #ccc;
@@ -62,6 +67,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  max-width: 39rem;
 }
 
 .addItems input {
@@ -134,6 +140,11 @@
   text-align: center;
 }
 
+.token {
+  display: flex;
+  justify-content: space-between;
+}
+
 .eachItem {
   background: #fff;
   padding: 0.5rem;
@@ -141,11 +152,14 @@
   margin-bottom: 0.7rem;
   margin-left: 1rem;
   min-width: 20rem;
+  max-width: 50rem;
+
   word-break: break-word;
   background: rgb(85, 41, 220);
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  /* justify-content: space-between;
+  align-items: center; */
 }
 
 .eachItem:hover {
@@ -157,6 +171,8 @@
   padding-left: 1rem;
   font-size: 1.2rem;
   color: #fff;
+  text-align: left;
+  width: 80%;
 }
 
 .fa-trash-alt,
@@ -250,3 +266,71 @@
   -webkit-transform: translateY(0) scale(1, 1);
   transform: translateY(0) scale(1, 1);
 }
+
+.copy {
+  cursor: pointer;
+  color: inherit;
+  font-size: 20px;
+}
+
+.copy:active {
+  transition: all;
+  color: red;
+  background-color: #ccc;
+  border-radius: 50%;
+  padding: 8px;
+}
+
+.token-child-div h1 {
+  text-align: left;
+}
+
+.url{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.blockedSite{
+  background: linear-gradient(to right, #ff7f7f, #ffffff);
+  border-radius: 16px;
+  align-items: center;
+}
+
+.block{
+  padding: 8px 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  background: linear-gradient(to right, red, white);
+  width: 8rem;
+  height: 3rem;
+  margin: 8px;
+}
+
+.block:hover{
+  background: linear-gradient(to right, white, red);
+}
+
+  .block:active{
+    opacity: 0.5;
+  }
+
+.unblock{
+  padding: 8px 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  background: linear-gradient(to right, lightgreen, white);
+  width: 8rem;
+  height: 3rem;
+  margin: 8px;
+}
+
+.unblock:hover{
+  background: linear-gradient(to right, white, lightgreen);
+}
+
+  .unblock:active{
+    opacity: 0.5;
+  }
+
+  

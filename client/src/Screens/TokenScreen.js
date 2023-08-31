@@ -13,6 +13,9 @@ const TokenScreen = () => {
     const [items, setItems] = useState([]);
     const [toggleSubmit, setToggleSubmit] = useState(true);
     const [isEditItem, setIsEditItem] = useState();
+    const [isBlocked, setIsBlocked] = useState(false);
+
+    // const [copied, setCopied] = useState(false);
 
     useEffect(() => {
         const token = () => {
@@ -29,6 +32,7 @@ const TokenScreen = () => {
         token();
     }, []);
 
+
     /*const addweb=async (e)=>{
         e.preventDefault();
         const data=location.state.data;
@@ -43,7 +47,7 @@ const TokenScreen = () => {
             console.log(error); 
         }
     }*/
-    console.log(data);
+    // console.log(data);
 
     const addItem = (e) => {
         e.preventDefault();
@@ -97,6 +101,28 @@ const TokenScreen = () => {
         setIsEditItem(id);
     }
 
+    const copyToClipboard = (id) => {
+
+        let elemClicked = data.find((elem) => {
+            return elem.id === id
+        })
+
+        // setCopied(true);
+
+        navigator.clipboard.writeText(elemClicked.id);
+        // setTimeout(() => {
+        //     setCopied(false);
+        // }, 1000);
+
+
+
+
+    }
+
+    const blockSiteHandler = () => {
+        setIsBlocked(!isBlocked);
+    }
+
     return (
         <>
             <div className='tokenContainer animate__animated animate__bounce'>
@@ -104,7 +130,7 @@ const TokenScreen = () => {
                     <div className='token-child-div' >
                         <h1>Add websites to be blocked</h1>
                         <div className='addItems'>
-                            <form method='post' action='http://localhost:8000/users/token'>
+                            <form method='post' action='http://localhost:8000/users/token' className='tokenForm'>
                                 <input
                                     type='text'
                                     placeholder='✍Enter URL of website...'
@@ -131,14 +157,27 @@ const TokenScreen = () => {
 
                         </div>
                         <div className="showItems">
-                            <h1>{data.map((elem) => {
-                                return (
-                                    <div className='eachItem' key={elem.id}>
-                                        <h3>{elem.site}</h3>
-                                        <h6>{elem.id}</h6>
-                                    </div>
-                                )
-                            })}</h1>
+                            <h1>
+                                {
+                                    data.map((elem) => {
+                                        return (
+                                            <div className='eachItem' key={elem.id}>
+                                            <div className={`url ${ isBlocked ? 'blockedSite' : ""}`}>
+                                                <h3>{elem.site}</h3>
+                                                <button className={isBlocked ? 'unblock':'block'} onClick={blockSiteHandler}>{isBlocked ? "Unblock" : "Block"}</button>
+                                                </div>
+                                                <div className='token'>
+                                                    <h6>{elem.id}</h6>
+                                                    {
+                                                         <i className="fa-solid fa-copy copy" onClick={() => copyToClipboard(elem.id)} title="copy token" id={elem.id}></i>
+                                                    }
+
+                                                </div>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </h1>
 
                             {/* {
                                 items.map((elem) => {

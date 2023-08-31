@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../Components/Footer";
 import NavBar from "../Components/NavBar";
 
@@ -42,6 +42,17 @@ const HomeScreen = () => {
 
     home();
   }, []);
+
+  const navigate = useNavigate();
+
+  const navigateToSignin = () => {
+    navigate("/users/login");
+  }
+
+  const navigateToTokenScreen = () => {
+    navigate("/users/token");
+
+  }
 
   return (
     <>
@@ -112,17 +123,11 @@ const HomeScreen = () => {
             </div>
           </div>
           <div className="homeBtnContainer">
-            <AnimButton><Link to="/users/token" className="homeSinBtn" state={{data:data}}>
-                  {" "}
+            <AnimButton onClick={navigateToTokenScreen} state={{data:data}}>
                  Generate Token
-                </Link></AnimButton>
+                </AnimButton>
             {userData ? null : (
-              <AnimButton>
-                <Link to="/users/login" className="homeSinBtn">
-                  {" "}
-                  Sign In
-                </Link>
-              </AnimButton>
+              <AnimButton onClick={navigateToSignin}>Sign In</AnimButton>
             )}
           </div>
         </div>

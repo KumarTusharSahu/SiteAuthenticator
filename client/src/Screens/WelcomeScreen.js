@@ -13,9 +13,6 @@ import Carousel from '../Components/Carousel';
 import axios from 'axios';
 
 const WelcomeScreen = () => {
-
-  
-
   return (
     <>
       <div className="welcomeContainer">

@@ -137,3 +137,10 @@ footer .copyright {
     left: 100%;
   }
 }
+
+
+@media(max-width: 415px){
+  .footercol {
+    flex-basis: 100%;
+  }
+}
