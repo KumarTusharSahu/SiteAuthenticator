@@ -1,13 +1,15 @@
 .tokenContainer {
   background: #060822;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  /* display: flex; */
+  /* align-items: center; */
+  /* justify-content: space-between; */
 }
 
 .tokenForm {
   padding: 0px;
   flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .tokenContainer img {
@@ -16,16 +18,18 @@
 
 .token-main-div {
   min-height: 100vh;
+  /* background-color: red; */
 
   display: flex;
   justify-content: center;
   /* align-items: center; */
-  margin-left: 4rem;
+  /* margin-left: 4rem; */
 }
 
 .token-child-div {
   text-align: center;
   margin-top: 12rem;
+  width: 80vw;
 }
 
 .token-child-div h1 {
@@ -67,7 +71,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 39rem;
+  /* max-width: 39rem; */
 }
 
 .addItems input {
@@ -95,6 +99,7 @@
   border: none;
   /* padding: 1.5 rem; */
   outline: none;
+  background-color: #ffffff;
 }
 .addItems input {
   -webkit-box-shadow: none;
@@ -151,8 +156,8 @@
   border-radius: 0.5rem;
   margin-bottom: 0.7rem;
   margin-left: 1rem;
-  min-width: 20rem;
-  max-width: 50rem;
+  /* min-width: 20rem; */
+  /* max-width: 50rem; */
 
   word-break: break-word;
   background: rgb(85, 41, 220);
@@ -172,7 +177,7 @@
   font-size: 1.2rem;
   color: #fff;
   text-align: left;
-  width: 80%;
+  /* width: 80%; */
 }
 
 .fa-trash-alt,
@@ -185,6 +190,8 @@
   -webkit-transition: color 0.15s linear;
   transition: color 0.15s linear;
   font-size: 1.2rem;
+  margin-bottom: 10px;
+  /* margin-right: 2rem; */
 }
 
 .addItems .fa-edit {
@@ -213,12 +220,13 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 45px;
-  max-width: 160px;
+  /* max-width: 160px; */
   position: relative;
   text-decoration: none;
   text-transform: uppercase;
-  width: 100%;
+  /* width: 100%; */
   background-color: #fff;
+  padding: 0 12px;
 }
 .tokenbtn:hover {
   text-decoration: none;
@@ -288,6 +296,7 @@
 .url{
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 8px;
 }
 
@@ -305,6 +314,7 @@
   width: 8rem;
   height: 3rem;
   margin: 8px;
+  border: 1px solid black;
 }
 
 .block:hover{
@@ -323,6 +333,7 @@
   width: 8rem;
   height: 3rem;
   margin: 8px;
+  border: 1px solid black;
 }
 
 .unblock:hover{
@@ -333,4 +344,28 @@
     opacity: 0.5;
   }
 
-  
+  .react-ios-time-picker-input{
+    background-color: #fff;
+    width: 5rem;
+    margin-right: 2rem;
+  }
+
+  .react-ios-time-picker-input:hover{
+    background-color: rgb(85, 41, 220);
+    color: #fff;
+  }
+
+  .delweb{
+    display: flex;
+  }
+
+  .utils{
+    display: flex;
+    align-items: center;
+  }
+
+  .utils h5{
+    margin-bottom: 0px;
+    margin-right: 8px;
+    text-shadow: 1px 1px grey;
+  }

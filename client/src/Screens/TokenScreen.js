@@ -5,15 +5,19 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import token from "../Assets/images/token.webp"
 import axios from 'axios';
 
+import { TimePicker } from 'react-ios-time-picker';
+
 const TokenScreen = () => {
     const location = useLocation();
-   const navigate=useNavigate();
+    const navigate = useNavigate();
     const [data, setData] = useState([]);
     const [inputData, setInputData] = useState("");
     const [items, setItems] = useState([]);
     const [toggleSubmit, setToggleSubmit] = useState(true);
     const [isEditItem, setIsEditItem] = useState();
     const [isBlocked, setIsBlocked] = useState(false);
+
+    const [value, setValue] = useState('10:00');
 
     // const [copied, setCopied] = useState(false);
 
@@ -31,6 +35,10 @@ const TokenScreen = () => {
 
         token();
     }, []);
+
+    const onChange = (timeValue) => {
+        setValue(timeValue);
+    }
 
     const block = async () => {
         await axios
@@ -50,13 +58,13 @@ const TokenScreen = () => {
                 .delete("http://localhost:8000/users/removeall", {
                     withCredentials: true,
                 })
-            
+
         } catch (error) {
             console.log("error")
         }
 
-           
-           
+
+
 
     };
 
@@ -85,10 +93,10 @@ const TokenScreen = () => {
 
             setItems(
                 data.map((elem) => {
-                   /* if (elem.id === isEditItem) {
-                        return { ...elem, name: inputData }
-                    }
-                    return elem;*/
+                    /* if (elem.id === isEditItem) {
+                         return { ...elem, name: inputData }
+                     }
+                     return elem;*/
                     console.log(elem);
                 })
 
@@ -147,18 +155,18 @@ const TokenScreen = () => {
 
     }
 
-    const blockSiteHandler = async() => {
-        
-        setIsBlocked(!isBlocked);
-        if(isBlocked){
-            await unblock();
-          }
-          else{
-            await block(); 
-            
-          }
+    const blockSiteHandler = async () => {
 
-      
+        setIsBlocked(!isBlocked);
+        if (isBlocked) {
+            await unblock();
+        }
+        else {
+            await block();
+
+        }
+
+
     }
 
     return (
@@ -180,8 +188,8 @@ const TokenScreen = () => {
                                 {
                                     toggleSubmit ? <button
                                         className="add-btn generate-token-btn"
-                                        title="Block URL"
-                                        
+                                        title="Generate Token"
+
                                     >
                                         Generate Token
                                     </button>
@@ -201,14 +209,27 @@ const TokenScreen = () => {
                                     data.map((elem) => {
                                         return (
                                             <div className='eachItem' key={elem.id}>
-                                            <div className={`url ${ isBlocked ? 'blockedSite' : ""}`}>
-                                                <h3>{elem.site}</h3>
-                                                <button className={isBlocked ? 'unblock':'block'} onClick={blockSiteHandler}>{isBlocked ? "Unblock" : "Block"}</button>
+
+                                                <div className={`url ${isBlocked ? 'blockedSite' : ""}`}>
+                                                <div className='delweb'>
+                                                    <i className="far fa-trash-alt add-btn" title="Remove URL" onClick={() => deleteItem(elem.id)}></i>
+                                                    <h3>{elem.site}</h3>
+                                                    </div>
+                                                    <div className='utils'>
+                                                        <h5>From</h5>
+                                                    <TimePicker onChange={onChange} value={value} />
+                                                    <h5>To</h5>
+                                                    <TimePicker onChange={onChange} value={value} />
+
+                                                    
+
+                                                    <button className={isBlocked ? 'unblock' : 'block'} onClick={blockSiteHandler}>{isBlocked ? "Unblock" : "Block"}</button>
+                                                    </div>
                                                 </div>
                                                 <div className='token'>
                                                     <h6>{elem.id}</h6>
                                                     {
-                                                         <i className="fa-solid fa-copy copy" onClick={() => copyToClipboard(elem.id)} title="copy token" id={elem.id}></i>
+                                                        <i className="fa-solid fa-copy copy" onClick={() => copyToClipboard(elem.id)} title="copy token" id={elem.id}></i>
                                                     }
 
                                                 </div>
@@ -237,7 +258,7 @@ const TokenScreen = () => {
                         </div>
                     </div>
                 </div>
-                <img src={token} alt="" />
+                {/* <img src={token} alt="" /> */}
             </div>
         </>
     )
