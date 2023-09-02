@@ -5,15 +5,17 @@ import { useLocation, useNavigate } from "react-router-dom";
 import token from "../Assets/images/token.webp";
 import axios from "axios";
 import {ToastContainer, toast} from 'react-toastify'
+import { TimePicker } from 'react-ios-time-picker';
 const TokenScreen = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const [data, setData] = useState([]);
-  const [inputData, setInputData] = useState("");
-  const [items, setItems] = useState([]);
-  const [toggleSubmit, setToggleSubmit] = useState(true);
-  const [isEditItem, setIsEditItem] = useState();
-  const [isBlocked, setIsBlocked] = useState(false);
+    const location = useLocation();
+   const navigate=useNavigate();
+    const [data, setData] = useState([]);
+    const [inputData, setInputData] = useState("");
+    const [items, setItems] = useState([]);
+    const [toggleSubmit, setToggleSubmit] = useState(true);
+    const [isEditItem, setIsEditItem] = useState();
+    const [isBlocked, setIsBlocked] = useState(false);
+    const [value,setValue]=useState()
 
   // const [copied, setCopied] = useState(false);
 
@@ -29,8 +31,12 @@ const TokenScreen = () => {
         });
     };
 
-    token();
-  }, []);
+        token();
+    }, []);
+
+    const onChange = (timeValue) => {
+        setValue(timeValue);
+    }
 
   const block = async (id) => {
     console.log(id)
@@ -154,79 +160,83 @@ const TokenScreen = () => {
   const blockSiteHandler = async (id,status) => {
     if (status) {
       await unblock(id);
+      window.location.href='/users/token'
     } else {
       await block(id);
+      window.location.href='/users/token'
     }
-    window.location.href='/users/token'
+   
   };
 
-  return (
-    <>
-    <ToastContainer/>
-      <div className="tokenContainer animate__animated animate__bounce">
-        <div className="token-main-div">
-          <div className="token-child-div">
-            <h1>Add websites to be blocked</h1>
-            <div className="addItems">
-              <form
-                method="post"
-                action="http://localhost:8000/users/token"
-                className="tokenForm"
-              >
-                <input
-                  type="text"
-                  placeholder="✍Enter URL of website..."
-                  name="site"
-                  value={inputData}
-                  onChange={(event) => {
-                    setInputData(event.target.value);
-                  }}
-                />
-                {toggleSubmit ? (
-                  <button
-                    className="add-btn generate-token-btn"
-                    title="Block URL"
-                  >
-                    Generate Token
-                  </button>
-                ) : (
-                  <i
-                    className="far fa-edit add-btn"
-                    title="Update URL"
-                    onClick={addItem}
-                  ></i>
-                )}
-              </form>
-            </div>
-            <div className="showItems">
-              <h1>
-                {data.map((elem) => {
-                  return (
-                    <div className="eachItem" key={elem.id}>
-                      <div className={`url ${elem.status ? "blockedSite" : ""}`}>
-                        <h3>{elem.site}</h3>
-                        <button
-                          className={elem.status ? "unblock" : "block"}
-                          onClick={() => blockSiteHandler(elem.id,elem.status)}
-                        >
-                          {elem.status ? "Unblock" : "Block"}
-                        </button>
-                      </div>
-                      <div className="token">
-                        <h6>{elem.id}</h6>
-                        {
-                          <i
-                            className="fa-solid fa-copy copy"
-                            onClick={() => copyToClipboard(elem.id)}
-                            title="copy token"
-                            id={elem.id}
-                          ></i>
-                        }
-                      </div>
-                    </div>
-                  );
-                })}
-              </h1>
+    return (
+        <>
+            <div className='tokenContainer animate__animated animate__bounce'>
+                <div className='token-main-div'>
+                    <div className='token-child-div' >
+                        <h1>Add websites to be blocked</h1>
+                        <div className='addItems'>
+                            <form method='post' action='http://localhost:8000/users/token' className='tokenForm'>
+                                <input
+                                    type='text'
+                                    placeholder='✍Enter URL of website...'
+                                    name="site"
+                                    value={inputData}
+                                    onChange={(event) => {
+                                        setInputData(event.target.value);
+                                    }} />
+                                {
+                                    toggleSubmit ? <button
+                                        className="add-btn generate-token-btn"
+                                        title="Generate Token"
+
+                                    >
+                                        Generate Token
+                                    </button>
+                                        :
+                                        <i className="far fa-edit add-btn" title="Update URL" onClick={addItem}></i>
+                                }
+                            </form>
+
+
+
+
+
+                        </div>
+                        <div className="showItems">
+                            <h1>
+                                {
+                                    data.map((elem) => {
+                                        return (
+                                            <div className='eachItem' key={elem.id}>
+
+                                                <div className={`url ${elem.status ? 'blockedSite' : ""}`}>
+                                                <div className='delweb'>
+                                                    <i className="far fa-trash-alt add-btn" title="Remove URL" onClick={() => deleteItem(elem.id)}></i>
+                                                    <h3>{elem.site}</h3>
+                                                    </div>
+                                                    <div className='utils'>
+                                                        <h5>From</h5>
+                                                    <TimePicker onChange={onChange} value={value} />
+                                                    <h5>To</h5>
+                                                    <TimePicker onChange={onChange} value={value} />
+
+                                                    
+
+                                                    <button className={elem.status ? 'unblock' : 'block'} onClick={()=>blockSiteHandler(elem.id,elem.status)}>{elem.status ? "Unblock" : "Block"}</button>
+                                                    </div>
+                                                </div>
+                                                <div className='token'>
+                                                    <h6>{elem.id}</h6>
+                                                    {
+                                                        <i className="fa-solid fa-copy copy" onClick={() => copyToClipboard(elem.id)} title="copy token" id={elem.id}></i>
+                                                    }
+
+                                                </div>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </h1>
 
               {/* {
                                 items.map((elem) => {
