@@ -9,14 +9,13 @@ import ForgetPasswordMailScreen from "./Screens/ForgetPasswordMailScreen";
 import ForgetPasswordResetPasswordScreen from "./Screens/ForgetPasswordResetPasswordScreen";
 import WelcomeScreen from "./Screens/WelcomeScreen";
 import TokenScreen from "./Screens/TokenScreen";
-import { ToastContainer } from "react-toastify";
+
 import EditProfile from "./Screens/EditProfile";
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <ToastContainer />
         <Routes>
           <Route path="/" element={<WelcomeScreen />} />
           <Route path="/users/login" element={<LoginScreen />} />

@@ -1,67 +1,76 @@
-import React, { useEffect, useState } from 'react'
-import "../Assets/css/TokenScreen.css"
-import 'animate.css';
-import { useLocation, useNavigate } from 'react-router-dom';
-import token from "../Assets/images/token.webp"
-import axios from 'axios';
-
+import React, { useEffect, useState } from "react";
+import "../Assets/css/TokenScreen.css";
+import "animate.css";
+import { useLocation, useNavigate } from "react-router-dom";
+import token from "../Assets/images/token.webp";
+import axios from "axios";
+import {ToastContainer, toast} from 'react-toastify'
 const TokenScreen = () => {
-    const location = useLocation();
-   const navigate=useNavigate();
-    const [data, setData] = useState([]);
-    const [inputData, setInputData] = useState("");
-    const [items, setItems] = useState([]);
-    const [toggleSubmit, setToggleSubmit] = useState(true);
-    const [isEditItem, setIsEditItem] = useState();
-    const [isBlocked, setIsBlocked] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [data, setData] = useState([]);
+  const [inputData, setInputData] = useState("");
+  const [items, setItems] = useState([]);
+  const [toggleSubmit, setToggleSubmit] = useState(true);
+  const [isEditItem, setIsEditItem] = useState();
+  const [isBlocked, setIsBlocked] = useState(false);
 
-    // const [copied, setCopied] = useState(false);
+  // const [copied, setCopied] = useState(false);
 
-    useEffect(() => {
-        const token = async () => {
-            await axios
-                .get("http://localhost:8000/users/token", {
-                    withCredentials: true,
-                })
-                .then((res) => {
-                    // console.log(res);
-                    setData(res.data.website);
-                });
-        };
-
-        token();
-    }, []);
-
-    const block = async () => {
-        await axios
-            .get("http://localhost:8000/users/block", {
-                withCredentials: true,
-            })
-    };
-    const unblock = async () => {
-        await axios
-            .get("http://localhost:8000/users/unblock", {
-                withCredentials: true,
-            })
-    };
-    const removeall = async () => {
-        try {
-            await axios
-                .delete("http://localhost:8000/users/removeall", {
-                    withCredentials: true,
-                })
-            
-        } catch (error) {
-            console.log("error")
-        }
-
-           
-           
-
+  useEffect(() => {
+    const token = async () => {
+      await axios
+        .get("http://localhost:8000/users/token", {
+          withCredentials: true,
+        })
+        .then((res) => {
+          // console.log(res);
+          setData(res.data.website);
+        });
     };
 
+    token();
+  }, []);
 
-    /*const addweb=async (e)=>{
+  const block = async (id) => {
+    console.log(id)
+   const res= await axios.post(
+      `http://localhost:8000/users/block/${id}`,
+      {
+        id: id,
+      },{
+        withCredentials:true
+      }
+    );
+
+    console.log(res.data);
+  };
+  const unblock = async (id) => {
+
+    try {
+      await axios.post(`http://localhost:8000/users/unblock/${id}`, {
+          id:id
+      },{
+        withCredentials: true,
+      });
+      
+    } catch (error) {
+      console.log(error)
+    }
+  };
+  const removeall = async () => {
+    try {
+      await axios.delete("http://localhost:8000/users/removeall", {
+        withCredentials: true,
+      });
+    } catch (error) {
+      console.log("error");
+    }
+
+    window.location.href='/users/token'
+  };
+
+  /*const addweb=async (e)=>{
         e.preventDefault();
         const data=location.state.data;
         console.log(data)
@@ -75,150 +84,151 @@ const TokenScreen = () => {
             console.log(error); 
         }
     }*/
-    // console.log(data);
+  // console.log(data);
 
-    const addItem = (e) => {
-        e.preventDefault();
-        if (!inputData) {
-            alert("Please enter a valid url");
-        } else if (inputData && !toggleSubmit) {
-
-            setItems(
-                data.map((elem) => {
-                   /* if (elem.id === isEditItem) {
+  const addItem = (e) => {
+    e.preventDefault();
+    if (!inputData) {
+      alert("Please enter a valid url");
+    } else if (inputData && !toggleSubmit) {
+      setItems(
+        data.map((elem) => {
+          /* if (elem.id === isEditItem) {
                         return { ...elem, name: inputData }
                     }
                     return elem;*/
-                    console.log(elem);
-                })
-
-            )
-            setToggleSubmit(true);
-
-            setInputData("");
-
-            setIsEditItem();
-
-        } else {
-            const allInputData = { id: new Date().getTime().toString(), name: inputData }
-            setItems([...items, allInputData]);
-            setInputData("");
-        }
-    }
-
-    const deleteItem = (index) => {
-        const updatedItems = items.filter((elem) => {
-            return index !== elem.id;
-        });
-        setItems(updatedItems);
-    }
-
-    const removeAll = () => {
-        setItems([]);
-    }
-
-    const editItem = (id) => {
-        let newEditItem = items.find((elem) => {
-            return elem.id === id;
-        });
-
-        setToggleSubmit(false);
-
-        setInputData(newEditItem.name);
-
-        setIsEditItem(id);
-    }
-
-    const copyToClipboard = (id) => {
-
-        let elemClicked = data.find((elem) => {
-            return elem.id === id
+          console.log(elem);
         })
+      );
+      setToggleSubmit(true);
 
-        // setCopied(true);
+      setInputData("");
 
-        navigator.clipboard.writeText(elemClicked.id);
-        // setTimeout(() => {
-        //     setCopied(false);
-        // }, 1000);
-
-
-
-
+      setIsEditItem();
+    } else {
+      const allInputData = {
+        id: new Date().getTime().toString(),
+        name: inputData,
+      };
+      setItems([...items, allInputData]);
+      setInputData("");
     }
+  };
 
-    const blockSiteHandler = async() => {
-        
-        setIsBlocked(!isBlocked);
-        if(isBlocked){
-            await unblock();
-          }
-          else{
-            await block(); 
-            
-          }
+  const deleteItem = (index) => {
+    const updatedItems = items.filter((elem) => {
+      return index !== elem.id;
+    });
+    setItems(updatedItems);
+  };
 
-      
+  const removeAll = () => {
+    setItems([]);
+  };
+
+  const editItem = (id) => {
+    let newEditItem = items.find((elem) => {
+      return elem.id === id;
+    });
+
+    setToggleSubmit(false);
+
+    setInputData(newEditItem.name);
+
+    setIsEditItem(id);
+  };
+
+  const copyToClipboard = (id) => {
+    let elemClicked = data.find((elem) => {
+      return elem.id === id;
+    });
+
+    // setCopied(true);
+
+    navigator.clipboard.writeText(elemClicked.id);
+    // setTimeout(() => {
+    //     setCopied(false);
+    // }, 1000);
+  };
+
+  const blockSiteHandler = async (id,status) => {
+    if (status) {
+      await unblock(id);
+    } else {
+      await block(id);
     }
+    window.location.href='/users/token'
+  };
 
-    return (
-        <>
-            <div className='tokenContainer animate__animated animate__bounce'>
-                <div className='token-main-div'>
-                    <div className='token-child-div' >
-                        <h1>Add websites to be blocked</h1>
-                        <div className='addItems'>
-                            <form method='post' action='http://localhost:8000/users/token' className='tokenForm'>
-                                <input
-                                    type='text'
-                                    placeholder='✍Enter URL of website...'
-                                    name="site"
-                                    value={inputData}
-                                    onChange={(event) => {
-                                        setInputData(event.target.value);
-                                    }} />
-                                {
-                                    toggleSubmit ? <button
-                                        className="add-btn generate-token-btn"
-                                        title="Block URL"
-                                        
-                                    >
-                                        Generate Token
-                                    </button>
-                                        :
-                                        <i className="far fa-edit add-btn" title="Update URL" onClick={addItem}></i>
-                                }
-                            </form>
+  return (
+    <>
+    <ToastContainer/>
+      <div className="tokenContainer animate__animated animate__bounce">
+        <div className="token-main-div">
+          <div className="token-child-div">
+            <h1>Add websites to be blocked</h1>
+            <div className="addItems">
+              <form
+                method="post"
+                action="http://localhost:8000/users/token"
+                className="tokenForm"
+              >
+                <input
+                  type="text"
+                  placeholder="✍Enter URL of website..."
+                  name="site"
+                  value={inputData}
+                  onChange={(event) => {
+                    setInputData(event.target.value);
+                  }}
+                />
+                {toggleSubmit ? (
+                  <button
+                    className="add-btn generate-token-btn"
+                    title="Block URL"
+                  >
+                    Generate Token
+                  </button>
+                ) : (
+                  <i
+                    className="far fa-edit add-btn"
+                    title="Update URL"
+                    onClick={addItem}
+                  ></i>
+                )}
+              </form>
+            </div>
+            <div className="showItems">
+              <h1>
+                {data.map((elem) => {
+                  return (
+                    <div className="eachItem" key={elem.id}>
+                      <div className={`url ${elem.status ? "blockedSite" : ""}`}>
+                        <h3>{elem.site}</h3>
+                        <button
+                          className={elem.status ? "unblock" : "block"}
+                          onClick={() => blockSiteHandler(elem.id,elem.status)}
+                        >
+                          {elem.status ? "Unblock" : "Block"}
+                        </button>
+                      </div>
+                      <div className="token">
+                        <h6>{elem.id}</h6>
+                        {
+                          <i
+                            className="fa-solid fa-copy copy"
+                            onClick={() => copyToClipboard(elem.id)}
+                            title="copy token"
+                            id={elem.id}
+                          ></i>
+                        }
+                      </div>
+                    </div>
+                  );
+                })}
+              </h1>
 
-
-
-
-
-                        </div>
-                        <div className="showItems">
-                            <h1>
-                                {
-                                    data.map((elem) => {
-                                        return (
-                                            <div className='eachItem' key={elem.id}>
-                                            <div className={`url ${ isBlocked ? 'blockedSite' : ""}`}>
-                                                <h3>{elem.site}</h3>
-                                                <button className={isBlocked ? 'unblock':'block'} onClick={blockSiteHandler}>{isBlocked ? "Unblock" : "Block"}</button>
-                                                </div>
-                                                <div className='token'>
-                                                    <h6>{elem.id}</h6>
-                                                    {
-                                                         <i className="fa-solid fa-copy copy" onClick={() => copyToClipboard(elem.id)} title="copy token" id={elem.id}></i>
-                                                    }
-
-                                                </div>
-                                            </div>
-                                        )
-                                    })
-                                }
-                            </h1>
-
-                            {/* {
+              {/* {
                                 items.map((elem) => {
                                     return (
                                         <div className='eachItem' key={elem.id}>
@@ -231,16 +241,22 @@ const TokenScreen = () => {
                                     )
                                 })
                             } */}
-                        </div>
-                        <div className="showItems">
-                            <button className="tokenbtn effect04" data-sm-link-text="Remove All" onClick={removeall}><span> CHECK LIST </span> </button>
-                        </div>
-                    </div>
-                </div>
-                <img src={token} alt="" />
             </div>
-        </>
-    )
-}
+            <div className="showItems">
+              <button
+                className="tokenbtn effect04"
+                data-sm-link-text="Remove All"
+                onClick={removeall}
+              >
+                <span> CHECK LIST </span>{" "}
+              </button>
+            </div>
+          </div>
+        </div>
+        <img src={token} alt="" />
+      </div>
+    </>
+  );
+};
 
-export default TokenScreen
+export default TokenScreen;

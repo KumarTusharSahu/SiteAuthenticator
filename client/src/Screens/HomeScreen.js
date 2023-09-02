@@ -21,25 +21,28 @@ import AnimButton from "../Components/AnimButton";
 const HomeScreen = () => {
   const [userData, setUserData] = useState("");
   const [user, setUser] = useState("");
-  const [data,setData]=useState("")
+  const [data, setData] = useState("");
 
   useEffect(() => {
-    const home = () => {
-      axios
-        .get("http://localhost:8000/users/home", {
-          withCredentials: true,
-        })
-        .then((res) => {
-          setUserData(res.data.name);
-          setUser({
-            userid: res.data._id,
-            username: res.data.name,
-            avatar:res.data.avatar
+    const home = async () => {
+      try {
+        await axios
+          .get("http://localhost:8000/users/home", {
+            withCredentials: true,
+          })
+          .then((res) => {
+            setUserData(res.data.name);
+            setUser({
+              userid: res.data._id,
+              username: res.data.name,
+              avatar: res.data.avatar,
+            });
+            setData(res.data);
           });
-          setData(res.data);
-        });
+      } catch (error) {
+        console.log(error);
+      }
     };
-
     home();
   }, []);
 
@@ -47,12 +50,11 @@ const HomeScreen = () => {
 
   const navigateToSignin = () => {
     navigate("/users/login");
-  }
+  };
 
   const navigateToTokenScreen = () => {
     navigate("/users/token");
-
-  }
+  };
 
   return (
     <>
@@ -123,9 +125,9 @@ const HomeScreen = () => {
             </div>
           </div>
           <div className="homeBtnContainer">
-            <AnimButton onClick={navigateToTokenScreen} state={{data:data}}>
-                 Generate Token
-                </AnimButton>
+            <AnimButton onClick={navigateToTokenScreen} state={{ data: data }}>
+              Generate Token
+            </AnimButton>
             {userData ? null : (
               <AnimButton onClick={navigateToSignin}>Sign In</AnimButton>
             )}
@@ -173,8 +175,8 @@ const HomeScreen = () => {
               One of the most effective skills you can have in life is effective
               time management. If you’re not managing your time well, you won’t
               be able to reach your professional or personal goals. With the
-              various features available on SiteAuthenticator your time management
-              schedule will never look better.
+              various features available on SiteAuthenticator your time
+              management schedule will never look better.
             </p>
             <p>
               You’ll be able to get everything you need to do done using the
@@ -185,9 +187,9 @@ const HomeScreen = () => {
             <p>
               The time has come to increase productivity. So, whether you’re at
               work, studying at school or just looking for a way to get more
-              done during the day, SiteAuthenticator has the best tools to help you
-              improve your productivity and get the results you want quickly and
-              effectively.
+              done during the day, SiteAuthenticator has the best tools to help
+              you improve your productivity and get the results you want quickly
+              and effectively.
             </p>
           </div>
           <div>
