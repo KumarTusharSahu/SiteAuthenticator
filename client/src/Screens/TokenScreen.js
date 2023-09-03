@@ -263,7 +263,7 @@ const TokenScreen = () => {
             </div>
           </div>
         </div>
-        <img src={token} alt="" />
+        {/* <img src={token} alt="" /> */}
       </div>
     </>
   );
