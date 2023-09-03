@@ -353,6 +353,10 @@
     color: #fff;
   }
 
+  .react-ios-time-picker-input:hover::placeholder{
+    color: #fff;
+  }
+
   .delweb{
     display: flex;
   }
@@ -389,5 +393,26 @@
 
     .utils{
       display: block;
+      margin-left: 16px;
     }
+
+    .fa-trash-alt{
+      margin: 8px;
+    }
+
+    .showItems .eachItem h3{
+      margin: 8px;
+    }
+
+    .unblock{
+      margin-left: 25%;
+    }
+    .block{
+      margin-left: 25%;
+    }
+
+    .tokenbtn{
+      margin-bottom: 20px;
+    }
+    
   }

@@ -27,26 +27,28 @@ module.exports.token = function (req, res) {
   user.save();
   return res.redirect("http://localhost:3000/users/token");
 };
+const parseTime = (timeStr) => {
+  const [hours, minutes] = timeStr.split(":").map(Number);
+  const now = new Date();
+  now.setHours(hours);
+  now.setMinutes(minutes);
+  return now;
+};
 
 module.exports.blocker = async function (req, res) {
-  console.log(req.params.id);
+  const LowerTime=parseTime(req.params.value1)
+  const Uppertime=parseTime(req.params.value2)
 
+  console.log(LowerTime)
+  console.log(Uppertime)
+  console.log(req.params.id);
   // const user=await User.findById(req.user._id);
   const user = await User.findById(req.user._id);
   const website = user.website;
-
+   const delay=Uppertime-LowerTime;
+   console.log(delay);
   const result = website.find(({ id }) => id === req.params.id);
-  await User.updateOne(
-    {
-      _id: req.user._id,
-    },
-    {
-      $set: { "website.$[elem].status": true },
-    },
-    {
-      arrayFilters: [{ "elem.id": req.params.id }],
-    }
-  );
+ 
   // Make a variable to store path of hosts file
   //const filePath =  "/etc/hosts";
   // Note* If you are a windows user, your file path should be C:\Windows\System32\drivers\etc\hosts
@@ -57,19 +59,26 @@ module.exports.blocker = async function (req, res) {
 
   // Store the redirection path in a variable
   // The websites in the block list will be directed to localhost (127.0.0.1)
-  const redirectPath = "127.0.0.1";
+  const redirectPath = "23.185.0.2";
 
   // List of websities to be blocked
-  // let websites = ["https://www.business.org/","https://www.oneplus.in/","www.oneplus.in","https://www.xnxx.press/","xnxx.press","www.youtube.com","https://www.youtube.com/","www.business.org","business.org","https://www.facebook.com/","www.facebook.com"];
+ 
 
   // Set delay (Time interval after which our script should execute)
-  let delay = 10000; // 10 seconds
+  // 10 seconds
   // Make a new object of Date
   let date = new Date();
   // Compare whether the current time is free time or block time
   let hours = date.getHours();
+  let minutes = date.getMinutes();
+  let store=`${hours}:${minutes}`;
+  let final=parseTime(store);
+  //console.log(store);
+
+ // console.log(Uppertime)
+ 
   // Blocking our website from 2pm to 6pm
-  if (hours >= 0 && hours < 23) {
+  if (final >= LowerTime && final < Uppertime) {
     console.log("Time to block websites");
     fs.readFile(filePath, (err, data) => {
       // Throw error in case something went wrong!
@@ -100,9 +109,38 @@ module.exports.blocker = async function (req, res) {
         }
       }
     });
+
+    await User.updateOne(
+      {
+        _id: req.user._id,
+      },
+      {
+        $set: { "website.$[elem].status": true },
+      },
+      {
+        arrayFilters: [{ "elem.id": req.params.id }],
+      }
+    );
+
+    if (delay > 0) {
+      setTimeout(() => {
+        console.log("hello");
+        module.exports.blocker(req, res); // Pass req and res to the recursive call
+      }, delay);
+    }
   } else {
     console.log("Time to unblock websites");
-
+    await User.updateOne(
+      {
+        _id: req.user._id,
+      },
+      {
+        $set: { "website.$[elem].status": false },
+      },
+      {
+        arrayFilters: [{ "elem.id": req.params.id }],
+      }
+    );
     /**
      * Declare and empty string,
      * We will keep on appending the lines which do not contain our websites to this string
@@ -139,6 +177,8 @@ module.exports.blocker = async function (req, res) {
       }
     });
   }
+
+
   return res.send({ status: true, message: "blocked site" });
 };
 
@@ -148,6 +188,7 @@ module.exports.unblock = async function (req, res) {
   const user = await User.findById(req.user._id);
   const website = user.website;
   const result = website.find(({ id }) => id === req.params.id);
+
   await User.updateOne(
     {
       _id: req.user._id,
@@ -159,6 +200,7 @@ module.exports.unblock = async function (req, res) {
       arrayFilters: [{ "elem.id": req.params.id }],
     }
   );
+
   const filePath = "C:\\Windows\\System32\\drivers\\etc\\hosts";
   let completeContent = "";
 
@@ -191,11 +233,25 @@ module.exports.unblock = async function (req, res) {
     }
   });
   return res.redirect("http://localhost:3000/users/token");
+ 
 };
 
-module.exports.removeall = async function (req, res) {
+module.exports.removeid = async function (req, res) {
   const user = await User.findById(req.user._id);
-  const websites = user.website;
+  const website = user.website;
+  const result = website.find(({ id }) => id === req.params.id);
+  const item = await User.updateOne({
+    _id: req.user._id
+  },
+  {
+    $pull: {
+      "website": {
+        id: req.params.id
+      }
+    }
+  })
+
+
   const filePath = "C:\\Windows\\System32\\drivers\\etc\\hosts";
   let completeContent = "";
 
@@ -207,9 +263,9 @@ module.exports.removeall = async function (req, res) {
       // console.log(line);
       let flag = 1;
       // Loop through each website from website list
-      for (let i = 0; i < websites.length; i++) {
+      for (let i = 0; i < website.length; i++) {
         // Check whether the current line contains any blocked website
-        if (line.indexOf(websites[i].site) >= 0) {
+        if (line.indexOf(result.site) >= 0) {
           flag = 0;
           break;
         }
@@ -227,7 +283,5 @@ module.exports.removeall = async function (req, res) {
       return console.log("Error!", err);
     }
   });
-  user.website = [];
-  await user.save();
   return res.redirect("http://localhost:3000/users/token");
 };
