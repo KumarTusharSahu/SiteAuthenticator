@@ -8,6 +8,6 @@ router.get('/token',passport.checkAuthentication,block_controller.starttoken);
 router.post('/unblock/:id',passport.checkAuthentication,block_controller.unblock);
 router.get('/home',passport.checkAuthentication,home_controller.ren);
 router.post('/token',block_controller.token)
-router.post('/block/:id',block_controller.blocker)
-router.delete('/removeall',passport.checkAuthentication,block_controller.removeall)
+router.post('/block/:id/:value1/:value2',passport.checkAuthentication,block_controller.blocker)
+router.post('/removeid/:id',passport.checkAuthentication,block_controller.removeid)
 module.exports=router;
