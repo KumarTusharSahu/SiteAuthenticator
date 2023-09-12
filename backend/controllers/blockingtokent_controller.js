@@ -1,6 +1,8 @@
 const User = require("../models/user");
 const Crypto = require("crypto");
 const fs = require("fs");
+
+const sudo=require('sudo-prompt')
 module.exports.starttoken = function (req, res) {
   return res.json(req.user);
 };
@@ -59,7 +61,7 @@ module.exports.blocker = async function (req, res) {
 
   // Store the redirection path in a variable
   // The websites in the block list will be directed to localhost (127.0.0.1)
-  const redirectPath = "23.185.0.2";
+  const redirectPath = "127.0.0.1";
 
   // List of websities to be blocked
  
@@ -80,35 +82,50 @@ module.exports.blocker = async function (req, res) {
   // Blocking our website from 2pm to 6pm
   if (final >= LowerTime && final < Uppertime) {
     console.log("Time to block websites");
-    fs.readFile(filePath, (err, data) => {
-      // Throw error in case something went wrong!
-      if (err) {
-        return console.log(err);
-      }
 
-      // Convert the fetched data to string
-      fileContents = data.toString();
+    // Build the command to modify the hosts file with administrative privileges
+    const command = `echo ${redirectPath} ${result.site} >> ${filePath}`;
 
-      /**
-       * Check whether each website in the list exist in the list,
-       * If it exists, ignore,
-       * else, write the websites and redirect address in the file
-       */
-      for (let i = 0; i < website.length; i++) {
-        let addWebsite = "\n" + redirectPath + " " + result.site;
-        if (fileContents.indexOf(addWebsite) < 0) {
-          console.log("Website: " + addWebsite + " is not present");
-          fs.appendFile(filePath, addWebsite, (err) => {
-            if (err) {
-              return console.log("Error: ", err);
-            }
-            console.log("File Updated Successfully");
-          });
-        } else {
-          console.log("Website: " + addWebsite + " is present");
-        }
+    // Execute the command with administrative privileges
+    sudo.exec(command, { name: 'Your Script Name' }, (error, stdout, stderr) => {
+      if (error) {
+        console.error('Error:', error);
+      } else {
+        console.log('Website blocked successfully');
       }
     });
+
+
+    // fs.readFile(filePath, (err, data) => {
+    //   // Throw error in case something went wrong!
+    //   if (err) {
+    //     return console.log(err);
+    //   }
+
+    //   // Convert the fetched data to string
+
+    //   fileContents = data.toString();
+
+    //   /**
+    //    * Check whether each website in the list exist in the list,
+    //    * If it exists, ignore,
+    //    * else, write the websites and redirect address in the file
+    //    */
+    //   for (let i = 0; i < website.length; i++) {
+    //     let addWebsite = "\n" + redirectPath + " " + result.site;
+    //     if (fileContents.indexOf(addWebsite) < 0) {
+    //       console.log("Website: " + addWebsite + " is not present");
+    //       fs.appendFile(filePath, addWebsite, (err) => {
+    //         if (err) {
+    //           return console.log("Error: ", err);
+    //         }
+    //         console.log("File Updated Successfully");
+    //       });
+    //     } else {
+    //       console.log("Website: " + addWebsite + " is present");
+    //     }
+    //   }
+    // });
 
     await User.updateOne(
       {
@@ -141,41 +158,53 @@ module.exports.blocker = async function (req, res) {
         arrayFilters: [{ "elem.id": req.params.id }],
       }
     );
+
+
+    const removeCommand = `sed -i /${result.site}/d ${filePath}`;
+
+    // Execute the removal command with administrative privileges
+    sudo.exec(removeCommand, { name: 'Your Script Name' }, (error, stdout, stderr) => {
+      if (error) {
+        console.error('Error:', error);
+      } else {
+        console.log('Website unblocked successfully');
+      }
+    });
     /**
      * Declare and empty string,
      * We will keep on appending the lines which do not contain our websites to this string
      * At the end, we will replace the file contents by this string
      */
-    let completeContent = "";
+    // let completeContent = "";
 
-    // Read  file line by line
-    fs.readFileSync(filePath)
-      .toString()
-      .split("\n")
-      .forEach((line) => {
-        // console.log(line);
-        let flag = 1;
-        // Loop through each website from website list
-        for (let i = 0; i < website.length; i++) {
-          // Check whether the current line contains any blocked website
-          if (line.indexOf(result.site) >= 0) {
-            flag = 0;
-            break;
-          }
-        }
+    // // Read  file line by line
+    // fs.readFileSync(filePath)
+    //   .toString()
+    //   .split("\n")
+    //   .forEach((line) => {
+    //     // console.log(line);
+    //     let flag = 1;
+    //     // Loop through each website from website list
+    //     for (let i = 0; i < website.length; i++) {
+    //       // Check whether the current line contains any blocked website
+    //       if (line.indexOf(result.site) >= 0) {
+    //         flag = 0;
+    //         break;
+    //       }
+    //     }
 
-        if (flag == 1) {
-          if (line === "") completeContent += line;
-          else completeContent += line + "\n";
-        }
-      });
+    //     if (flag == 1) {
+    //       if (line === "") completeContent += line;
+    //       else completeContent += line + "\n";
+    //     }
+    //   });
 
-    // Replace the contents of file by completeContent
-    fs.writeFile(filePath, completeContent, (err) => {
-      if (err) {
-        return console.log("Error!", err);
-      }
-    });
+    // // Replace the contents of file by completeContent
+    // fs.writeFile(filePath, completeContent, (err) => {
+    //   if (err) {
+    //     return console.log("Error!", err);
+    //   }
+    // });
   }
 
 

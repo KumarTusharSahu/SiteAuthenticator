@@ -257,7 +257,7 @@ try {
                           </div>
                           <div className="utils">
                             <h5>From</h5>
-                            <TimePicker onChange={onChange1} value={value1} />
+                            <TimePicker onChange={onChange1} value={value1}  />
                             <h5>To</h5>
                             <TimePicker onChange={onChange2} value={value2} />
 
@@ -312,7 +312,7 @@ try {
               </div>
             </div>
           </div>
-          {/* <img src={token} alt="" /> */}
+          <img src={token} alt="" />
         </div>
       </>
     )
